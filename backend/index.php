@@ -56,16 +56,16 @@ try {
     }
 
     // ----------------- AUTHENTICATION -----------------
-    if ($uri === '/auth/login' && $method === 'POST') {
+    if (($uri === '/auth/login' || $uri === '/login') && $method === 'POST') {
         AuthController::login();
     }
-    if ($uri === '/auth/me' && $method === 'GET') {
+    if (($uri === '/auth/me' || $uri === '/me') && $method === 'GET') {
         AuthController::me();
     }
-    if ($uri === '/auth/logout' && $method === 'POST') {
+    if (($uri === '/auth/logout' || $uri === '/logout') && $method === 'POST') {
         AuthController::logout();
     }
-    if ($uri === '/auth/password' && $method === 'POST') {
+    if (($uri === '/auth/password' || $uri === '/password') && $method === 'POST') {
         AuthController::updatePassword();
     }
 
