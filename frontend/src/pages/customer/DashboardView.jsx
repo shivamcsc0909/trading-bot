@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatCard } from '../../components/StatCard';
 import { Badge } from '../../components/Badge';
+import { CustomerOnboarding } from '../../components/CustomerOnboarding';
 import {
   DollarSign,
   TrendingUp,
@@ -13,10 +14,16 @@ import {
   Power,
   Zap,
   CheckCircle2,
-  AlertTriangle
+  AlertTriangle,
+  ChevronDown,
+  ChevronUp,
+  Terminal,
+  Cpu
 } from 'lucide-react';
 
-export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) => {
+export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh, onNavigate }) => {
+  const [showTechDetails, setShowTechDetails] = useState(false);
+
   const stats = data?.stats || {};
   const mt5 = data?.mt5 || {};
   const bot = data?.bot || {};
@@ -28,36 +35,45 @@ export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) =>
 
   const isRunning = bot?.status === 'RUNNING';
   const isDemo = (bot?.mode || 'DEMO') === 'DEMO';
+  const isConnected = Boolean(mt5?.is_connected);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-6xl">
+      {/* Guided Onboarding Checklist for Non-Technical Users */}
+      <CustomerOnboarding
+        mt5={mt5}
+        license={license}
+        bot={bot}
+        onOpenMt5Setup={() => onNavigate && onNavigate('mt5')}
+      />
+
       {/* Top Banner with Quick Controls & System Status */}
       <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/30 border border-slate-800 shadow-xl flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
-            <h1 className="text-xl font-bold text-slate-100">Trading Overview</h1>
+            <h1 className="text-xl font-bold text-slate-100">Trading Operations Dashboard</h1>
             <Badge variant={isRunning ? 'success' : 'danger'}>
               {isRunning ? 'BOT ACTIVE' : 'BOT STOPPED'}
             </Badge>
             <Badge variant={isDemo ? 'info' : 'warning'}>
               {isDemo ? 'DEMO ACCOUNT' : 'LIVE ACCOUNT'}
             </Badge>
-            <Badge variant={mt5?.is_connected ? 'success' : 'danger'}>
-              {mt5?.is_connected ? 'MT5 CONNECTED' : 'MT5 DISCONNECTED'}
+            <Badge variant={isConnected ? 'success' : 'danger'}>
+              {isConnected ? 'MT5 ONLINE' : 'MT5 OFFLINE'}
             </Badge>
           </div>
           <p className="text-xs text-slate-400">
-            Strategy: <strong className="text-amber-300">{license?.strategy_name || 'Tech Forex Gold 100-Block'}</strong> • License: <span className="font-mono text-slate-300">{license?.license_key || 'TF-GOLD-8829-9401-K9X2'}</span>
+            Active Strategy: <strong className="text-amber-300 font-sans">{license?.strategy_name || 'Tech Forex Gold 100-Block'}</strong> • License: <span className="font-mono text-slate-300 font-bold">{license?.license_key || 'TF-GOLD-8829-9401-K9X2'}</span>
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
           <button
             onClick={onToggleMode}
-            className={`px-4 py-2 rounded-xl text-xs font-bold border transition shadow-sm ${
+            className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold border transition shadow-sm ${
               isDemo
-                ? 'bg-sky-950/60 border-sky-600/40 text-sky-300 hover:bg-sky-900/60'
-                : 'bg-rose-950/60 border-rose-600/50 text-rose-300 hover:bg-rose-900/60'
+                ? 'bg-sky-950/70 border-sky-600/40 text-sky-300 hover:bg-sky-900/60'
+                : 'bg-rose-950/70 border-rose-600/50 text-rose-300 hover:bg-rose-900/60'
             }`}
           >
             Switch to {isDemo ? 'LIVE MODE' : 'DEMO MODE'}
@@ -65,7 +81,7 @@ export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) =>
 
           <button
             onClick={onToggleBot}
-            className={`px-5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border transition shadow-lg ${
+            className={`px-4 sm:px-5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border transition shadow-lg ${
               isRunning
                 ? 'bg-rose-600 hover:bg-rose-700 text-white border-rose-500 shadow-rose-950/40'
                 : 'bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-500 shadow-emerald-950/40'
@@ -127,7 +143,7 @@ export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) =>
             {stats.open_positions_count || positions.length} <span className="text-xs font-normal text-slate-400">/ {risk?.max_open_positions || 2} max</span>
           </div>
           <div className="text-[10px] text-slate-400 mt-1">
-            Floating: <span className={(stats.floating_pl || 0) >= 0 ? 'text-emerald-400' : 'text-rose-400'}>
+            Floating: <span className={(stats.floating_pl || 0) >= 0 ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}>
               ${(stats.floating_pl || 0).toFixed(2)}
             </span>
           </div>
@@ -217,27 +233,27 @@ export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) =>
           )}
         </div>
 
-        {/* Last Signal & Strategy Context */}
+        {/* Last Signal & Closed Trade Context */}
         <div className="space-y-4">
           <div className="glass-card rounded-xl border border-slate-800 p-5">
             <div className="flex items-center gap-2 mb-3">
               <Compass className="text-amber-400" size={18} />
-              <h2 className="text-sm font-bold text-slate-100">Latest Signal Evaluated</h2>
+              <h2 className="text-sm font-bold text-slate-100">Latest Evaluated Signal</h2>
             </div>
             {lastSignal ? (
               <div className="space-y-2.5 text-xs">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-400">Signal UID:</span>
-                  <span className="font-mono text-slate-300 text-[11px]">{lastSignal.signal_uid}</span>
+                  <span className="font-mono text-slate-300 text-[11px] truncate max-w-[150px]">{lastSignal.signal_uid}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400">Setup Direction:</span>
+                  <span className="text-slate-400">Direction:</span>
                   <Badge variant={lastSignal.direction === 'BUY' ? 'success' : 'danger'}>
                     {lastSignal.direction} @ {parseFloat(lastSignal.price).toFixed(2)}
                   </Badge>
                 </div>
                 <div className="flex items-center justify-between font-mono text-[11px]">
-                  <span className="text-slate-400">SL / TP Targets:</span>
+                  <span className="text-slate-400">SL / TP:</span>
                   <span className="text-slate-200">{parseFloat(lastSignal.stop_loss).toFixed(2)} / {parseFloat(lastSignal.take_profit).toFixed(2)}</span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800/80 text-[11px] text-amber-300">
@@ -254,7 +270,7 @@ export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) =>
           <div className="glass-card rounded-xl border border-slate-800 p-5">
             <div className="flex items-center gap-2 mb-3">
               <Zap className="text-sky-400" size={18} />
-              <h2 className="text-sm font-bold text-slate-100">Last Closed Trade</h2>
+              <h2 className="text-sm font-bold text-slate-100">Last Closed Deal</h2>
             </div>
             {lastTrade ? (
               <div className="space-y-2 text-xs">
@@ -265,7 +281,7 @@ export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) =>
                   </span>
                 </div>
                 <div className="text-[11px] text-slate-400">
-                  {lastTrade.trade_type} {lastTrade.volume} lots @ {lastTrade.open_price} → {lastTrade.close_price}
+                  {lastTrade.trade_type} {lastTrade.volume} lots @ {lastTrade.open_price} &rarr; {lastTrade.close_price}
                 </div>
                 <div className="text-[10px] text-slate-400">
                   Closed at: {new Date(lastTrade.closed_at).toLocaleString()}
@@ -276,6 +292,43 @@ export const DashboardView = ({ data, onToggleBot, onToggleMode, onRefresh }) =>
             )}
           </div>
         </div>
+      </div>
+
+      {/* Optional Technical Details Accordion for Advanced Traders */}
+      <div className="glass-card rounded-xl border border-slate-800 overflow-hidden">
+        <button
+          onClick={() => setShowTechDetails(!showTechDetails)}
+          className="w-full p-4 flex items-center justify-between text-xs font-bold text-slate-400 hover:text-slate-200 transition bg-slate-900/40"
+        >
+          <div className="flex items-center gap-2">
+            <Terminal size={16} className="text-amber-400" />
+            <span>Technical Connection & Diagnostics (Advanced)</span>
+          </div>
+          {showTechDetails ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        </button>
+
+        {showTechDetails && (
+          <div className="p-4 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs font-mono bg-slate-950/60">
+            <div className="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span className="text-slate-500 font-sans">EA Version:</span> {mt5?.ea_version || '1.0.0'}
+            </div>
+            <div className="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span className="text-slate-500 font-sans">Magic Number:</span> {bot?.magic_number || 108801}
+            </div>
+            <div className="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span className="text-slate-500 font-sans">Account ID:</span> #{mt5?.account_number || '50198234'}
+            </div>
+            <div className="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span className="text-slate-500 font-sans">Server Ping:</span> {isConnected ? 'Active (HTTP 200 OK)' : 'Offline'}
+            </div>
+            <div className="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span className="text-slate-500 font-sans">Risk Engine:</span> {risk?.risk_percent || 2.0}% / max {risk?.max_open_positions || 2} pos
+            </div>
+            <div className="p-2.5 rounded bg-slate-900 border border-slate-800">
+              <span className="text-slate-500 font-sans">News Filter:</span> {risk?.news_filter_enabled ? 'Active (NFP/CPI)' : 'Disabled'}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

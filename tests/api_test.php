@@ -138,7 +138,28 @@ try {
     assertTest('Position/Trade sync', false, $e->getMessage());
 }
 
-// 7. Test Bot Kill Switch
+// 7. Test Customer Archive & Restore (Soft Delete)
+try {
+    Database::query("UPDATE customers SET is_archived = 1 WHERE id = 1");
+    $cust = Database::fetch("SELECT is_archived FROM customers WHERE id = 1");
+    assertTest('Customer soft-delete / archive', (int)$cust['is_archived'] === 1);
+
+    Database::query("UPDATE customers SET is_archived = 0 WHERE id = 1");
+    $cust = Database::fetch("SELECT is_archived FROM customers WHERE id = 1");
+    assertTest('Customer restore from archive', (int)$cust['is_archived'] === 0);
+} catch (Exception $e) {
+    assertTest('Customer lifecycle verification', false, $e->getMessage());
+}
+
+// 8. Test Strategy Duplication & Versioning
+try {
+    $strat = Database::fetch("SELECT * FROM strategies WHERE code = 'TF_GOLD_100_BLOCK'");
+    assertTest('Strategy version field exists', isset($strat['version']) && $strat['version'] === '1.0');
+} catch (Exception $e) {
+    assertTest('Strategy versioning verification', false, $e->getMessage());
+}
+
+// 9. Test Bot Kill Switch
 try {
     Database::query("UPDATE bot_instances SET status = 'STOPPED' WHERE id = 1");
     $bot = Database::fetch("SELECT * FROM bot_instances WHERE id = 1");

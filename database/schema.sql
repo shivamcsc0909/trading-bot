@@ -53,6 +53,8 @@ CREATE TABLE `customers` (
     `phone` VARCHAR(30) NULL,
     `country` VARCHAR(60) DEFAULT 'India',
     `notes` TEXT NULL,
+    `is_archived` TINYINT(1) DEFAULT 0,
+    `archived_at` DATETIME NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT `fk_customers_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -65,6 +67,7 @@ CREATE TABLE `strategies` (
     `description` TEXT NULL,
     `symbol` VARCHAR(30) NOT NULL DEFAULT 'XAUUSD',
     `timeframe` VARCHAR(10) NOT NULL DEFAULT 'M5',
+    `version` VARCHAR(20) NOT NULL DEFAULT '1.0',
     `is_active` TINYINT(1) DEFAULT 1,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

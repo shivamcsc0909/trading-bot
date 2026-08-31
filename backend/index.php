@@ -96,6 +96,15 @@ try {
     if ($uri === '/admin/customer-status' && $method === 'POST') {
         AdminController::updateCustomerStatus();
     }
+    if ($uri === '/admin/customer-archive' && $method === 'POST') {
+        AdminController::archiveCustomer();
+    }
+    if ($uri === '/admin/customer-restore' && $method === 'POST') {
+        AdminController::restoreCustomer();
+    }
+    if ($uri === '/admin/customer-strategy' && $method === 'POST') {
+        AdminController::assignStrategy();
+    }
     if ($uri === '/admin/customer-password' && $method === 'POST') {
         AdminController::resetCustomerPassword();
     }
@@ -152,6 +161,18 @@ try {
     }
     if ($uri === '/strategy/details' && $method === 'GET') {
         StrategyController::details();
+    }
+    if ($uri === '/strategy/create' && $method === 'POST') {
+        StrategyController::create();
+    }
+    if ($uri === '/strategy/update' && $method === 'POST') {
+        StrategyController::update();
+    }
+    if ($uri === '/strategy/duplicate' && $method === 'POST') {
+        StrategyController::duplicate();
+    }
+    if ($uri === '/strategy/status' && $method === 'POST') {
+        StrategyController::toggleStatus();
     }
     if ($uri === '/strategy/parameter' && $method === 'POST') {
         StrategyController::updateParameter();

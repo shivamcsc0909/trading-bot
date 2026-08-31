@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../../services/api';
 import { StatCard } from '../../components/StatCard';
 import { Badge } from '../../components/Badge';
-import { Users, Bot, Key, DollarSign, Activity, ScrollText, RefreshCw, PlusCircle } from 'lucide-react';
+import { Users, Bot, Key, DollarSign, Activity, ScrollText, RefreshCw, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 
 export const AdminDashboardView = ({ onNavigate }) => {
   const [data, setData] = useState(null);
@@ -25,15 +25,15 @@ export const AdminDashboardView = ({ onNavigate }) => {
   const logs = data?.recent_logs || [];
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 max-w-6xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-slate-100">Administrator Command Center</h1>
           <p className="text-xs text-slate-400 mt-1">Platform overview, customer licensing, bot monitoring, and aggregate performance.</p>
         </div>
         <button
           onClick={loadData}
-          className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-semibold text-slate-300 flex items-center gap-1.5 transition"
+          className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-semibold text-slate-300 flex items-center gap-1.5 transition self-start sm:self-auto"
         >
           <RefreshCw size={14} /> Refresh
         </button>
@@ -45,28 +45,75 @@ export const AdminDashboardView = ({ onNavigate }) => {
           title="Total Customers"
           value={stats.total_customers || 1}
           icon={Users}
-          subtitle="Registered accounts"
+          subtitle={`${stats.active_customers || 1} Active • ${stats.suspended_customers || 0} Suspended • ${stats.archived_customers || 0} Archived`}
         />
         <StatCard
           title="Active Bot Fleets"
           value={stats.active_bots || 1}
           icon={Bot}
           highlight={true}
-          subtitle={`${stats.connected_accounts || 1} MT5 terminals online`}
+          subtitle={`${stats.demo_bots || 1} Demo • ${stats.live_bots || 0} Live (${stats.connected_accounts || 1} Online)`}
         />
         <StatCard
-          title="Active Licenses"
+          title="Commercial Licenses"
           value={stats.total_licenses || 1}
           icon={Key}
-          subtitle="Commercial licenses"
+          subtitle={`${stats.active_licenses || 1} Active • ${stats.expired_licenses || 0} Expired`}
         />
         <StatCard
           title="Platform Closed Profit"
           value={stats.total_profit || 1850.0}
           isCurrency={true}
           icon={DollarSign}
-          subtitle={`${stats.total_trades || 18} executions`}
+          subtitle={`${stats.total_trades || 18} Executions (${stats.today_trades || 0} Today)`}
         />
+      </div>
+
+      {/* Quick Navigation Action Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <button
+          onClick={() => onNavigate('admin-customers')}
+          className="p-4 rounded-xl glass-card border border-slate-800 hover:border-amber-500/40 text-left transition space-y-1"
+        >
+          <div className="text-amber-400 font-bold text-xs flex items-center gap-1.5">
+            <Users size={16} />
+            <span>Customers</span>
+          </div>
+          <p className="text-[11px] text-slate-400">Onboard, suspend, & assign strategies</p>
+        </button>
+
+        <button
+          onClick={() => onNavigate('admin-bots')}
+          className="p-4 rounded-xl glass-card border border-slate-800 hover:border-amber-500/40 text-left transition space-y-1"
+        >
+          <div className="text-emerald-400 font-bold text-xs flex items-center gap-1.5">
+            <Bot size={16} />
+            <span>Bot Monitoring</span>
+          </div>
+          <p className="text-[11px] text-slate-400">View real-time heartbeats & kill switch</p>
+        </button>
+
+        <button
+          onClick={() => onNavigate('admin-strategies')}
+          className="p-4 rounded-xl glass-card border border-slate-800 hover:border-amber-500/40 text-left transition space-y-1"
+        >
+          <div className="text-sky-400 font-bold text-xs flex items-center gap-1.5">
+            <Activity size={16} />
+            <span>Strategies Engine</span>
+          </div>
+          <p className="text-[11px] text-slate-400">Add, duplicate, & tune parameters</p>
+        </button>
+
+        <button
+          onClick={() => onNavigate('admin-licenses')}
+          className="p-4 rounded-xl glass-card border border-slate-800 hover:border-amber-500/40 text-left transition space-y-1"
+        >
+          <div className="text-purple-400 font-bold text-xs flex items-center gap-1.5">
+            <Key size={16} />
+            <span>License Keys</span>
+          </div>
+          <p className="text-[11px] text-slate-400">Issue, suspend, & renew licenses</p>
+        </button>
       </div>
 
       {/* Tables: Recent Customers & System Events */}
@@ -105,7 +152,7 @@ export const AdminDashboardView = ({ onNavigate }) => {
                     <td className="py-2.5 text-amber-300 text-[11px]">{c.license_key || '—'}</td>
                     <td className="py-2.5 text-right font-sans">
                       <Badge variant={c.is_active ? 'success' : 'danger'} size="xs">
-                        {c.is_active ? 'ACTIVE' : 'DISABLED'}
+                        {c.is_active ? 'ACTIVE' : 'SUSPENDED'}
                       </Badge>
                     </td>
                   </tr>
@@ -136,7 +183,7 @@ export const AdminDashboardView = ({ onNavigate }) => {
                 <div className="truncate pr-2">
                   <span className="text-amber-400 font-bold">[{l.event_type}]</span> {l.message}
                 </div>
-                <span className="text-slate-500 text-[10px] shrink-0">{new Date(l.created_at).toLocaleTimeString()}</span>
+                <span className="text-slate-500 text-[10px] shrink-0 font-sans">{new Date(l.created_at).toLocaleTimeString()}</span>
               </div>
             ))}
           </div>

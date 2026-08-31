@@ -4,7 +4,12 @@ class StrategyController {
     public static function index(): void {
         Middleware::requireAuth();
 
-        $strategies = Database::fetchAll("SELECT * FROM strategies WHERE is_active = 1 ORDER BY id ASC");
+        $user = Auth::getCurrentUser();
+        $isAdmin = ($user['role'] ?? '') === 'ADMIN';
+
+        $condition = $isAdmin ? "1=1" : "is_active = 1";
+        $strategies = Database::fetchAll("SELECT * FROM strategies WHERE $condition ORDER BY id ASC");
+        
         foreach ($strategies as &$s) {
             $s['parameters'] = Database::fetchAll(
                 "SELECT param_key, param_value, param_type, description FROM strategy_parameters WHERE strategy_id = :sid",
@@ -65,8 +70,147 @@ class StrategyController {
         ]);
     }
 
+    public static function create(): void {
+        $admin = Middleware::requireAdmin();
+        $body = Middleware::getJsonBody();
+
+        $name = trim($body['name'] ?? '');
+        $code = strtoupper(trim($body['code'] ?? ''));
+        $symbol = trim($body['symbol'] ?? 'XAUUSD');
+        $timeframe = trim($body['timeframe'] ?? 'M5');
+        $version = trim($body['version'] ?? '1.0');
+        $desc = trim($body['description'] ?? '');
+
+        if (empty($name) || empty($code)) {
+            Middleware::jsonError('Strategy name and unique code are required.');
+        }
+
+        $existing = Database::fetch("SELECT id FROM strategies WHERE code = :c", [':c' => $code]);
+        if ($existing) {
+            Middleware::jsonError('A strategy with this code already exists.');
+        }
+
+        $stratId = Database::insert(
+            "INSERT INTO strategies (code, name, description, symbol, timeframe, version, is_active)
+             VALUES (:c, :n, :d, :sym, :tf, :v, 1)",
+            [':c' => $code, ':n' => $name, ':d' => $desc, ':sym' => $symbol, ':tf' => $timeframe, ':v' => $version]
+        );
+
+        // Default standard parameters
+        $params = $body['parameters'] ?? [
+            ['param_key' => 'risk_percent', 'param_value' => '2.0', 'param_type' => 'number', 'description' => 'Risk % per trade'],
+            ['param_key' => 'rr_target_ratio', 'param_value' => '4.0', 'param_type' => 'number', 'description' => 'Target Risk:Reward ratio'],
+            ['param_key' => 'timeframe', 'param_value' => $timeframe, 'param_type' => 'string', 'description' => 'Candle timeframe']
+        ];
+
+        foreach ($params as $p) {
+            Database::insert(
+                "INSERT INTO strategy_parameters (strategy_id, param_key, param_value, param_type, description)
+                 VALUES (:sid, :k, :v, :t, :d)",
+                [
+                    ':sid' => $stratId,
+                    ':k' => $p['param_key'],
+                    ':v' => $p['param_value'],
+                    ':t' => $p['param_type'] ?? 'string',
+                    ':d' => $p['description'] ?? ''
+                ]
+            );
+        }
+
+        Database::logAudit($admin['id'], 'STRATEGY_CREATED', 'STRATEGY', $stratId, ['code' => $code, 'version' => $version]);
+
+        Middleware::jsonSuccess(['strategy_id' => $stratId], 'Strategy created successfully');
+    }
+
+    public static function update(): void {
+        $admin = Middleware::requireAdmin();
+        $body = Middleware::getJsonBody();
+
+        $stratId = (int)($body['strategy_id'] ?? 0);
+        $name = trim($body['name'] ?? '');
+        $version = trim($body['version'] ?? '1.0');
+        $desc = trim($body['description'] ?? '');
+
+        if (!$stratId || empty($name)) {
+            Middleware::jsonError('Strategy ID and name required.');
+        }
+
+        Database::query(
+            "UPDATE strategies SET name = :n, version = :v, description = :d WHERE id = :id",
+            [':n' => $name, ':v' => $version, ':d' => $desc, ':id' => $stratId]
+        );
+
+        Database::logAudit($admin['id'], 'STRATEGY_UPDATED', 'STRATEGY', $stratId, ['name' => $name, 'version' => $version]);
+
+        Middleware::jsonSuccess([], 'Strategy details updated');
+    }
+
+    public static function duplicate(): void {
+        $admin = Middleware::requireAdmin();
+        $body = Middleware::getJsonBody();
+
+        $sourceId = (int)($body['strategy_id'] ?? 0);
+        $source = Database::fetch("SELECT * FROM strategies WHERE id = :id", [':id' => $sourceId]);
+        if (!$source) {
+            Middleware::jsonError('Source strategy not found.', 404);
+        }
+
+        $newCode = $source['code'] . '_COPY_' . substr(md5(uniqid()), 0, 4);
+        $newName = $source['name'] . ' (Copy)';
+        $newVersion = '1.0';
+
+        $newId = Database::insert(
+            "INSERT INTO strategies (code, name, description, symbol, timeframe, version, is_active)
+             VALUES (:c, :n, :d, :sym, :tf, :v, 1)",
+            [
+                ':c' => $newCode,
+                ':n' => $newName,
+                ':d' => $source['description'],
+                ':sym' => $source['symbol'],
+                ':tf' => $source['timeframe'],
+                ':v' => $newVersion
+            ]
+        );
+
+        $params = Database::fetchAll("SELECT * FROM strategy_parameters WHERE strategy_id = :sid", [':sid' => $sourceId]);
+        foreach ($params as $p) {
+            Database::insert(
+                "INSERT INTO strategy_parameters (strategy_id, param_key, param_value, param_type, description)
+                 VALUES (:sid, :k, :v, :t, :d)",
+                [
+                    ':sid' => $newId,
+                    ':k' => $p['param_key'],
+                    ':v' => $p['param_value'],
+                    ':t' => $p['param_type'],
+                    ':d' => $p['description']
+                ]
+            );
+        }
+
+        Database::logAudit($admin['id'], 'STRATEGY_DUPLICATED', 'STRATEGY', $newId, ['source_id' => $sourceId, 'new_code' => $newCode]);
+
+        Middleware::jsonSuccess(['strategy_id' => $newId, 'code' => $newCode], 'Strategy duplicated successfully');
+    }
+
+    public static function toggleStatus(): void {
+        $admin = Middleware::requireAdmin();
+        $body = Middleware::getJsonBody();
+
+        $stratId = (int)($body['strategy_id'] ?? 0);
+        $isActive = !empty($body['is_active']) ? 1 : 0;
+
+        Database::query("UPDATE strategies SET is_active = :act WHERE id = :id", [
+            ':act' => $isActive,
+            ':id' => $stratId
+        ]);
+
+        Database::logAudit($admin['id'], 'STRATEGY_STATUS_TOGGLED', 'STRATEGY', $stratId, ['is_active' => $isActive]);
+
+        Middleware::jsonSuccess([], 'Strategy status updated');
+    }
+
     public static function updateParameter(): void {
-        Middleware::requireAdmin();
+        $admin = Middleware::requireAdmin();
         $body = Middleware::getJsonBody();
 
         $strategyId = (int)($body['strategy_id'] ?? 0);
@@ -81,6 +225,8 @@ class StrategyController {
             "UPDATE strategy_parameters SET param_value = :v WHERE strategy_id = :sid AND param_key = :k",
             [':v' => $val, ':sid' => $strategyId, ':k' => $key]
         );
+
+        Database::logAudit($admin['id'], 'STRATEGY_PARAM_UPDATED', 'STRATEGY', $strategyId, ['param' => $key, 'value' => $val]);
 
         Middleware::jsonSuccess([], "Parameter {$key} updated");
     }

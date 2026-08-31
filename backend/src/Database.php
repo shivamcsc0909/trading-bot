@@ -157,6 +157,8 @@ class Database {
                 phone TEXT,
                 country TEXT DEFAULT 'India',
                 notes TEXT,
+                is_archived INTEGER DEFAULT 0,
+                archived_at DATETIME,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             );
             CREATE TABLE IF NOT EXISTS strategies (
@@ -166,6 +168,7 @@ class Database {
                 description TEXT,
                 symbol TEXT DEFAULT 'XAUUSD',
                 timeframe TEXT DEFAULT 'M5',
+                version TEXT DEFAULT '1.0',
                 is_active INTEGER DEFAULT 1,
                 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
             );
