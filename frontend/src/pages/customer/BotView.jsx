@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Badge } from '../../components/Badge';
 import { Bot, Power, ShieldAlert, ShieldCheck, RefreshCw, AlertTriangle, CheckCircle } from 'lucide-react';
+import { APP_CONFIG } from '../../config/appConfig';
 
 export const BotView = ({ data, onToggleBot, onToggleMode, onRefresh }) => {
   const bot = data?.bot || {};
@@ -25,7 +26,7 @@ export const BotView = ({ data, onToggleBot, onToggleMode, onRefresh }) => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-slate-100">Tech Forex Master Bot Engine</h2>
+                <h2 className="text-base font-bold text-slate-100">{APP_CONFIG.COMPANY_NAME} Master Bot Engine</h2>
                 <Badge variant={isRunning ? 'success' : 'danger'}>{isRunning ? 'RUNNING' : 'STOPPED'}</Badge>
                 <Badge variant={isDemo ? 'info' : 'warning'}>{isDemo ? 'DEMO' : 'LIVE'}</Badge>
               </div>
