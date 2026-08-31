@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { APP_CONFIG } from '../../config/appConfig';
+import { TelegramIcon } from '../../components/TelegramIcon';
 import {
   HelpCircle,
   ChevronDown,
@@ -8,7 +10,8 @@ import {
   Power,
   AlertTriangle,
   FileQuestion,
-  Search
+  Search,
+  Globe
 } from 'lucide-react';
 
 export const HelpView = () => {
@@ -17,7 +20,7 @@ export const HelpView = () => {
 
   const faqs = [
     {
-      q: 'How do I connect the bot to my MetaTrader 5 terminal?',
+      q: `How do I connect ${APP_CONFIG.COMPANY_NAME} to my MetaTrader 5 terminal?`,
       a: 'Download or copy TechForexGoldBot.mq5 into your MT5 "MQL5/Experts" directory. Compile it in MetaEditor, enable Algo Trading in MT5, add your backend API URL in Tools -> Options -> Expert Advisors -> WebRequest, and attach the EA to an XAUUSD M5 chart with your license key.'
     },
     {
@@ -30,7 +33,7 @@ export const HelpView = () => {
     },
     {
       q: 'What does "3 Daily Stop Loss Limit" mean?',
-      a: 'As extracted from the Tech Forex Gold Strategy PDF, if the bot encounters 3 stop loss hits in a single calendar day, all trading is automatically halted until the next day to preserve your capital.'
+      a: 'If the bot encounters 3 stop loss hits in a single calendar day, all trading is automatically halted until the next day to preserve your capital.'
     },
     {
       q: 'What should I do if MT5 shows "Disconnected / Offline"?',
@@ -42,7 +45,7 @@ export const HelpView = () => {
     },
     {
       q: 'Why does the bot skip trading between 9:00 AM and 2:00 PM IST?',
-      a: 'This is the PDF Strategy Filter F1 rule. The Asian session morning hours for Gold frequently exhibit choppy low-volume ranges. The bot focuses on high-liquidity European and US sessions.'
+      a: 'This is the Strategy Filter F1 rule. The Asian session morning hours for Gold frequently exhibit choppy low-volume ranges. The bot focuses on high-liquidity European and US sessions.'
     }
   ];
 
@@ -53,7 +56,7 @@ export const HelpView = () => {
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
-        <h1 className="text-xl font-bold text-slate-100">Customer Help Center & FAQ</h1>
+        <h1 className="text-xl font-bold text-slate-100">{APP_CONFIG.COMPANY_NAME} Help Center & FAQ</h1>
         <p className="text-xs text-slate-400 mt-1">Simple guides and explanations for operating your automated trading bot.</p>
       </div>
 
@@ -98,18 +101,32 @@ export const HelpView = () => {
         })}
       </div>
 
-      {/* Support Box */}
-      <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800 flex items-center justify-between text-xs">
+      {/* Support Box with Telegram & Website Links */}
+      <div className="p-4 rounded-xl bg-slate-900/40 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
         <div>
-          <div className="font-bold text-slate-200">Need direct assistance?</div>
-          <p className="text-slate-400 text-[11px]">Contact platform administration for license adjustments or broker setup support.</p>
+          <div className="font-bold text-slate-200">Have a question or need assistance?</div>
+          <p className="text-slate-400 text-[11px]">Contact us through our Telegram channel or visit our official website.</p>
         </div>
-        <a
-          href="mailto:support@techforex.com"
-          className="gold-gradient text-slate-950 font-bold px-4 py-2 rounded-lg shrink-0 shadow-md shadow-amber-500/20"
-        >
-          Contact Support
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href={APP_CONFIG.TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-sky-950 border border-sky-800/60 text-sky-300 hover:bg-sky-900 font-bold px-3.5 py-2 rounded-lg shrink-0 flex items-center gap-1.5 transition"
+          >
+            <TelegramIcon size={14} />
+            <span>Telegram</span>
+          </a>
+          <a
+            href={APP_CONFIG.WEBSITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gold-gradient text-slate-950 font-bold px-3.5 py-2 rounded-lg shrink-0 shadow-md shadow-amber-500/20 flex items-center gap-1.5"
+          >
+            <Globe size={14} />
+            <span>Website</span>
+          </a>
+        </div>
       </div>
     </div>
   );

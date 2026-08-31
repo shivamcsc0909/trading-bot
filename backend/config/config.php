@@ -19,7 +19,7 @@ if (file_exists($envFile)) {
 
 return [
     'app' => [
-        'name' => getenv('APP_NAME') ?: 'TechForex MT5 Bot Platform',
+        'name' => getenv('APP_NAME') ?: 'FXTRADER MT5 Platform',
         'env'  => getenv('APP_ENV') ?: 'development', // 'development' or 'production'
         'url'  => getenv('APP_URL') ?: 'http://localhost:8000',
         'debug'=> getenv('APP_DEBUG') === 'true' || getenv('APP_ENV') !== 'production',

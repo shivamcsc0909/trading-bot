@@ -1,7 +1,9 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { APP_CONFIG } from '../config/appConfig';
+import { TelegramIcon } from './TelegramIcon';
 import { Badge } from './Badge';
-import { Power, ShieldCheck, LogOut, Cpu, Menu, X, HelpCircle, Activity } from 'lucide-react';
+import { Power, ShieldCheck, LogOut, Cpu, Menu, X, HelpCircle, Globe } from 'lucide-react';
 
 export const Navbar = ({ botData, onToggleBot, onToggleMode, onOpenHelp, onToggleMobileMenu, isMobileMenuOpen }) => {
   const { user, logout, isAdmin } = useAuth();
@@ -29,18 +31,41 @@ export const Navbar = ({ botData, onToggleBot, onToggleMode, onOpenHelp, onToggl
             </div>
             <div className="hidden sm:block">
               <div className="flex items-center gap-2">
-                <span className="text-base font-black tracking-wider gold-text">TECH FOREX</span>
+                <span className="text-base font-black tracking-wider gold-text">{APP_CONFIG.COMPANY_NAME}</span>
                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 font-mono font-bold">
                   MT5 PRO
                 </span>
               </div>
-              <p className="text-[10px] text-slate-400">XAUUSD 100-Block Automated Engine</p>
+              <p className="text-[10px] text-slate-400">{APP_CONFIG.TAGLINE}</p>
             </div>
           </div>
         </div>
 
         {/* Real-time Status Badges & Controls */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Quick Official Links */}
+          <a
+            href={APP_CONFIG.WEBSITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Official Website"
+            className="hidden xl:flex items-center gap-1 text-[11px] font-semibold text-slate-300 hover:text-amber-400 px-2 py-1 rounded bg-slate-900/60 border border-slate-800"
+          >
+            <Globe size={13} className="text-amber-400" />
+            <span>fxtraderinfo.com</span>
+          </a>
+
+          <a
+            href={APP_CONFIG.TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Telegram Channel"
+            className="hidden xl:flex items-center gap-1 text-[11px] font-semibold text-sky-400 hover:text-sky-300 px-2 py-1 rounded bg-sky-950/40 border border-sky-800/40"
+          >
+            <TelegramIcon size={13} />
+            <span>Telegram</span>
+          </a>
+
           {/* MT5 Terminal Connection */}
           <div className="hidden md:flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-2.5 py-1.5 rounded-lg">
             <div className={`h-2.5 w-2.5 rounded-full ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`} />

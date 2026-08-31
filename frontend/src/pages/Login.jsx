@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Cpu, ShieldCheck, ArrowRight, Lock, Mail, AlertCircle } from 'lucide-react';
+import { APP_CONFIG } from '../config/appConfig';
+import { TelegramIcon } from '../components/TelegramIcon';
+import { Cpu, ShieldCheck, ArrowRight, Lock, Mail, AlertCircle, Globe, ArrowLeft } from 'lucide-react';
 
-export const Login = () => {
+export const Login = ({ onGoToGuest }) => {
   const { login, loading } = useAuth();
   const [email, setEmail] = useState('customer@techforex.com');
   const [password, setPassword] = useState('Customer@123456');
@@ -29,15 +31,25 @@ export const Login = () => {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-md relative z-10">
+      <div className="w-full max-w-md relative z-10 space-y-4">
+        {onGoToGuest && (
+          <button
+            onClick={onGoToGuest}
+            className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-amber-400 font-semibold transition"
+          >
+            <ArrowLeft size={14} />
+            <span>Back to Public Overview</span>
+          </button>
+        )}
+
         <div className="glass-panel p-8 rounded-2xl shadow-2xl border border-slate-800">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl gold-gradient shadow-lg shadow-amber-500/20 mb-4">
               <Cpu className="h-8 w-8 text-slate-950 font-black" />
             </div>
-            <h1 className="text-2xl font-black tracking-tight gold-text">TECH FOREX</h1>
-            <p className="text-xs text-slate-400 mt-1">MT5 Automated Trading Platform (100-Block Engine)</p>
+            <h1 className="text-2xl font-black tracking-tight gold-text">{APP_CONFIG.COMPANY_NAME}</h1>
+            <p className="text-xs text-slate-400 mt-1">{APP_CONFIG.TAGLINE} (MT5 Connector)</p>
           </div>
 
           {/* Quick Credential Switcher */}
@@ -119,12 +131,27 @@ export const Login = () => {
             </button>
           </form>
 
-          {/* Footer note */}
-          <div className="mt-6 pt-4 border-t border-slate-800/80 text-center">
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
-              <ShieldCheck size={14} className="text-emerald-400" />
-              <span>Default Mode: DEMO / Paper Trading First</span>
-            </div>
+          {/* External Links */}
+          <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+            <a
+              href={APP_CONFIG.WEBSITE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 hover:text-amber-400 transition"
+            >
+              <Globe size={13} className="text-amber-400" />
+              <span>fxtraderinfo.com</span>
+            </a>
+
+            <a
+              href={APP_CONFIG.TELEGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 hover:text-sky-400 transition text-sky-400"
+            >
+              <TelegramIcon size={13} />
+              <span>Telegram Support</span>
+            </a>
           </div>
         </div>
       </div>

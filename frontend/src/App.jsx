@@ -3,7 +3,9 @@ import { useAuth } from './context/AuthContext';
 import { api } from './services/api';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
+import { Footer } from './components/Footer';
 import { Login } from './pages/Login';
+import { GuestLanding } from './pages/GuestLanding';
 
 // Customer Views
 import { DashboardView } from './pages/customer/DashboardView';
@@ -16,6 +18,7 @@ import { RiskView } from './pages/customer/RiskView';
 import { ProfileView } from './pages/customer/ProfileView';
 import { LogsView } from './pages/customer/LogsView';
 import { HelpView } from './pages/customer/HelpView';
+import { AboutView } from './pages/customer/AboutView';
 
 // Admin Views
 import { AdminDashboardView } from './pages/admin/AdminDashboardView';
@@ -30,6 +33,7 @@ export function App() {
   const [activeTab, setActiveTab] = useState(isAdmin ? 'admin-dashboard' : 'dashboard');
   const [customerData, setCustomerData] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [unauthView, setUnauthView] = useState('guest'); // 'guest' or 'login'
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -77,8 +81,12 @@ export function App() {
     loadCustomerData();
   };
 
+  // Public / Guest state handling
   if (!user) {
-    return <Login />;
+    if (unauthView === 'login') {
+      return <Login onGoToGuest={() => setUnauthView('guest')} />;
+    }
+    return <GuestLanding onGoToLogin={() => setUnauthView('login')} />;
   }
 
   const renderContent = () => {
@@ -108,6 +116,8 @@ export function App() {
         return <RiskView data={customerData} onRefresh={loadCustomerData} />;
       case 'help':
         return <HelpView />;
+      case 'about':
+        return <AboutView />;
       case 'profile':
         return <ProfileView data={customerData} />;
       case 'logs':
@@ -164,9 +174,12 @@ export function App() {
           isMobileOpen={isMobileMenuOpen}
           onCloseMobile={() => setIsMobileMenuOpen(false)}
         />
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 custom-scrollbar bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900/50">
-          {renderContent()}
-        </main>
+        <div className="flex-1 flex flex-col overflow-y-auto custom-scrollbar bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900/50">
+          <main className="flex-1 p-4 sm:p-6 lg:p-8">
+            {renderContent()}
+          </main>
+          <Footer onNavigateAbout={() => setActiveTab(isAdmin ? 'admin-dashboard' : 'about')} />
+        </div>
       </div>
     </div>
   );

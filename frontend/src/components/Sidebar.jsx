@@ -1,5 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { APP_CONFIG } from '../config/appConfig';
+import { TelegramIcon } from './TelegramIcon';
 import {
   LayoutDashboard,
   Bot,
@@ -14,7 +16,9 @@ import {
   Layers,
   HelpCircle,
   X,
-  Compass
+  Compass,
+  Globe,
+  Info
 } from 'lucide-react';
 
 export const Sidebar = ({ activeTab, setActiveTab, isMobileOpen, onCloseMobile }) => {
@@ -28,7 +32,8 @@ export const Sidebar = ({ activeTab, setActiveTab, isMobileOpen, onCloseMobile }
     { id: 'positions', label: 'Live Positions', icon: TrendingUp },
     { id: 'history', label: 'Trade History', icon: History },
     { id: 'risk', label: 'Risk Parameters', icon: ShieldCheck },
-    { id: 'help', label: 'Customer Guide & FAQ', icon: HelpCircle },
+    { id: 'help', label: 'Help & FAQ', icon: HelpCircle },
+    { id: 'about', label: 'About & Support', icon: Info },
     { id: 'profile', label: 'Trader Profile', icon: User },
     { id: 'logs', label: 'Execution Logs', icon: ScrollText },
   ];
@@ -55,7 +60,7 @@ export const Sidebar = ({ activeTab, setActiveTab, isMobileOpen, onCloseMobile }
       <div className="space-y-4">
         {/* Mobile Header with Close Button */}
         <div className="flex items-center justify-between lg:hidden pb-2 border-b border-slate-800">
-          <div className="text-xs font-black gold-text">TECH FOREX BOT</div>
+          <div className="text-xs font-black gold-text">{APP_CONFIG.COMPANY_NAME}</div>
           <button
             onClick={onCloseMobile}
             className="p-1 rounded-lg bg-slate-900 text-slate-400 hover:text-white"
@@ -90,23 +95,40 @@ export const Sidebar = ({ activeTab, setActiveTab, isMobileOpen, onCloseMobile }
           </nav>
         </div>
 
-        {/* Quick Quickstart Box for non-technical users */}
-        {!isAdmin && (
-          <div className="p-3.5 rounded-xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 text-xs">
-            <div className="flex items-center gap-2 text-amber-400 font-bold mb-1">
-              <Zap size={14} />
-              <span>MQL5 Connector</span>
+        {/* Official Channels Quick Links */}
+        <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2 text-xs">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Official Links</div>
+          <a
+            href={APP_CONFIG.WEBSITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between text-slate-300 hover:text-amber-400 py-1 transition"
+          >
+            <div className="flex items-center gap-2">
+              <Globe size={14} className="text-amber-400" />
+              <span className="text-[11px]">Official Website</span>
             </div>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              Attach EA to <strong>XAUUSD M5</strong> chart on Windows MT5 or VPS.
-            </p>
-          </div>
-        )}
+            <span className="text-[10px] text-slate-500 font-mono">&rarr;</span>
+          </a>
+
+          <a
+            href={APP_CONFIG.TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between text-sky-400 hover:text-sky-300 py-1 transition"
+          >
+            <div className="flex items-center gap-2">
+              <TelegramIcon size={14} />
+              <span className="text-[11px]">Telegram Support</span>
+            </div>
+            <span className="text-[10px] text-slate-500 font-mono">&rarr;</span>
+          </a>
+        </div>
       </div>
 
       <div className="p-3 rounded-lg bg-slate-900/40 border border-slate-800/60 text-center">
-        <div className="text-[10px] text-slate-500">Version 1.0.0 (MVP)</div>
-        <div className="text-[10px] text-amber-500/70 font-mono">Demo First • 100-Block Engine</div>
+        <div className="text-[10px] text-slate-400 font-bold">{APP_CONFIG.COMPANY_NAME} MT5</div>
+        <div className="text-[10px] text-amber-500/80 font-mono">Demo First • 100-Block Engine</div>
       </div>
     </div>
   );
