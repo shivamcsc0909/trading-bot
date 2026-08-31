@@ -1,0 +1,4345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FXTraderInfo | Forex Trading Books, Strategies & Trading Bots</title>
+  <meta name="description" content="Explore forex trading books, trading strategies, educational resources and automated forex trading tools from FXTraderInfo. Designed for disciplined traders.">
+  <meta name="keywords" content="forex trading, forex bots, trading books, algorithmic trading, expert advisors, forex strategies, risk management, trading psychology, MT4, MT5">
+  <link rel="canonical" href="https://fxtraderinfo.com/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fxtraderinfo.com/">
+  <meta property="og:title" content="FXTraderInfo | Forex Trading Books, Strategies & Trading Bots">
+  <meta property="og:description" content="Explore forex trading books, trading strategies, educational resources and automated forex trading tools from FXTraderInfo.">
+  <meta property="og:image" content="https://fxtraderinfo.com/assets/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://fxtraderinfo.com/">
+  <meta name="twitter:title" content="FXTraderInfo | Forex Trading Books, Strategies & Trading Bots">
+  <meta name="twitter:description" content="Explore forex trading books, trading strategies, educational resources and automated forex trading tools from FXTraderInfo.">
+  <meta name="twitter:image" content="https://fxtraderinfo.com/assets/og-image.jpg">
+  
+  <meta name="theme-color" content="#06090e">
+
+  <!-- Google Fonts & Font Awesome CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES & THEME DEFINITIONS
+       ========================================================================== */
+    :root {
+      --bg-primary: #06090e;
+      --bg-secondary: #0b111a;
+      --bg-card: rgba(15, 23, 36, 0.75);
+      --bg-card-hover: rgba(22, 33, 51, 0.85);
+      --bg-surface: #101926;
+      --bg-elevated: #162234;
+      
+      --accent-green: #10b981;
+      --accent-green-glow: rgba(16, 185, 129, 0.25);
+      --accent-emerald: #059669;
+      --accent-gold: #f59e0b;
+      --accent-gold-glow: rgba(245, 158, 11, 0.2);
+      --accent-blue: #38bdf8;
+      --accent-red: #f43f5e;
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --text-dim: #475569;
+      
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-focus: rgba(16, 185, 129, 0.5);
+      --border-gold: rgba(245, 158, 11, 0.4);
+      
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
+      --shadow-glow: 0 0 25px var(--accent-green-glow);
+      --shadow-gold: 0 0 25px var(--accent-gold-glow);
+      
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(56, 189, 248, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    /* Accessibility / Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-primary);
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+      outline: none;
+      border: none;
+      background: transparent;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+    }
+
+    /* Layout Containers */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-sm {
+      padding: 3.5rem 0;
+    }
+
+    /* Grid helpers */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--accent-green);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .section-badge.gold {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--accent-gold);
+    }
+
+    .section-badge.blue {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: var(--accent-blue);
+    }
+
+    .section-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Gradients */
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-green {
+      background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-gold {
+      background: linear-gradient(135deg, #fde047 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.75rem 1.65rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #032b1d;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5);
+      color: #021a11;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #1e1302;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.5);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--accent-green);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: var(--accent-green);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1.1rem;
+      font-size: 0.85rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-lg {
+      padding: 0.95rem 2.2rem;
+      font-size: 1.05rem;
+      border-radius: var(--radius-md);
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .glass-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    .header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(6, 9, 14, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all var(--transition-normal);
+    }
+
+    .header.scrolled {
+      background: rgba(6, 9, 14, 0.95);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      transition: height var(--transition-normal);
+    }
+
+    .header.scrolled .header-inner {
+      height: 64px;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #10b981 0%, #064e3b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .logo-text span {
+      color: var(--accent-green);
+    }
+
+    /* Nav Menu */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .nav-link {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      position: relative;
+      padding: 0.4rem 0;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-green);
+      transition: width var(--transition-normal);
+      border-radius: var(--radius-full);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Nav Actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    /* Mobile Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 26px;
+      height: 20px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--text-primary);
+      border-radius: var(--radius-full);
+      transition: all var(--transition-normal);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Mobile Menu Drawer */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 320px;
+      height: 100vh;
+      background: var(--bg-secondary);
+      border-left: 1px solid var(--border-subtle);
+      padding: 6rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: right var(--transition-normal);
+      z-index: 999;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav .nav-link {
+      font-size: 1.1rem;
+      padding: 0.5rem 0;
+      display: block;
+    }
+
+    .mobile-nav-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+
+    .mobile-nav-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero {
+      padding: 6.5rem 0 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--accent-green);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+
+    .hero-title {
+      font-size: 3.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 2.25rem;
+      max-width: 580px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .hero-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .hero-badge-item i {
+      color: var(--accent-green);
+    }
+
+    /* Trading Terminal Graphic (CSS / Canvas / HTML) */
+    .terminal-card {
+      background: rgba(11, 17, 26, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(16, 185, 129, 0.08);
+      position: relative;
+      backdrop-filter: blur(20px);
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .terminal-pair-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .terminal-symbol {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .terminal-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .terminal-price-live {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+    }
+
+    .terminal-price-val {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-green);
+    }
+
+    .terminal-price-change {
+      font-size: 0.8rem;
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    /* Chart Simulation Container */
+    .chart-container {
+      height: 180px;
+      width: 100%;
+      position: relative;
+      margin-bottom: 1.25rem;
+      background: rgba(6, 9, 14, 0.5);
+      border-radius: var(--radius-md);
+      padding: 0.75rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .chart-grid-lines {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0.75rem;
+      pointer-events: none;
+    }
+
+    .chart-grid-lines span {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .candle {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      min-width: 4px;
+    }
+
+    .candle-wick {
+      position: absolute;
+      width: 1.5px;
+      background: rgba(255, 255, 255, 0.3);
+      top: 10%;
+      bottom: 10%;
+    }
+
+    .candle-body {
+      width: 100%;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .candle.bull .candle-body {
+      background: var(--accent-green);
+      box-shadow: 0 0 6px var(--accent-green-glow);
+    }
+    .candle.bull .candle-wick {
+      background: var(--accent-green);
+    }
+
+    .candle.bear .candle-body {
+      background: var(--accent-red);
+    }
+    .candle.bear .candle-wick {
+      background: var(--accent-red);
+    }
+
+    /* Terminal Meta Rows */
+    .terminal-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta-stat-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 0.75rem;
+    }
+
+    .meta-stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .meta-stat-value {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Floating Bot Status Pill */
+    .bot-indicator-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+    }
+
+    .bot-status-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .status-pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-green);
+      animation: pulse 1.5s infinite;
+    }
+
+    /* ==========================================================================
+       TRUST / VALUE STRIP
+       ========================================================================== */
+    .trust-strip {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 2.25rem 0;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .trust-item:nth-child(2) .trust-icon { color: var(--accent-blue); }
+    .trust-item:nth-child(3) .trust-icon { color: var(--accent-gold); }
+    .trust-item:nth-child(4) .trust-icon { color: #a855f7; }
+
+    .trust-text h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .trust-text p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       ABOUT SECTION
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .about-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .about-feature-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      margin-top: 0.15rem;
+    }
+
+    .about-feature-content h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .about-feature-content p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    /* Ecosystem Diagram Card */
+    .ecosystem-card {
+      background: linear-gradient(145deg, rgba(16, 25, 38, 0.9) 0%, rgba(10, 15, 24, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .ecosystem-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .ecosystem-header h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .ecosystem-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .eco-node {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-normal);
+      position: relative;
+      z-index: 2;
+    }
+
+    .eco-node:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--accent-green);
+      transform: translateX(6px);
+    }
+
+    .eco-node-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .eco-node-num {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    .eco-node-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .eco-node-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .eco-node-arrow {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .eco-connector-line {
+      position: absolute;
+      left: 28px;
+      top: 30px;
+      bottom: 30px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-green), var(--accent-blue), var(--accent-gold));
+      z-index: 1;
+      opacity: 0.3;
+    }
+
+    /* ==========================================================================
+       BOOKS SECTION
+       ========================================================================== */
+    .book-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .book-card:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.08);
+    }
+
+    /* CSS-Generated Book Mockup */
+    .book-cover-mockup {
+      width: 100%;
+      height: 220px;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem;
+      box-shadow: -6px 8px 18px rgba(0, 0, 0, 0.6);
+      border-left: 6px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .book-cover-1 { background: linear-gradient(135deg, #064e3b 0%, #022c22 100%); border-top: 1px solid #10b981; }
+    .book-cover-2 { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); border-top: 1px solid #38bdf8; }
+    .book-cover-3 { background: linear-gradient(135deg, #581c87 0%, #1e1b4b 100%); border-top: 1px solid #a855f7; }
+    .book-cover-4 { background: linear-gradient(135deg, #78350f 0%, #451a03 100%); border-top: 1px solid #f59e0b; }
+    .book-cover-5 { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); border-top: 1px solid #6b7280; }
+    .book-cover-6 { background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%); border-top: 1px solid #0284c7; }
+
+    .book-spine-effect {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 12px;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .book-badge-tag {
+      align-self: flex-start;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .book-mockup-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #ffffff;
+    }
+
+    .book-mockup-author {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-family: var(--font-mono);
+    }
+
+    .book-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-category {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .book-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .book-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .book-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    /* ==========================================================================
+       FOREX BOTS SECTION
+       ========================================================================== */
+    .bot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .bot-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all var(--transition-normal);
+      backdrop-filter: blur(14px);
+    }
+
+    .bot-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .bot-card.popular {
+      background: linear-gradient(160deg, rgba(16, 27, 43, 0.95) 0%, rgba(10, 16, 25, 0.95) 100%);
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(16, 185, 129, 0.12);
+    }
+
+    .bot-popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #021a11;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 1rem;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+
+    .bot-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .bot-tier-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: var(--accent-green);
+      margin-bottom: 1.25rem;
+    }
+
+    .bot-card.popular .bot-tier-icon {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    .bot-title {
+      font-size: 1.45rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .bot-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .bot-features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .bot-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .bot-feature-item i {
+      color: var(--accent-green);
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .bot-disclaimer-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* Comparison Table */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 3.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .comparison-table th {
+      font-weight: 700;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .comparison-table th:first-child {
+      border-top-left-radius: var(--radius-md);
+    }
+    .comparison-table th:last-child {
+      border-top-right-radius: var(--radius-md);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table td .check {
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       STRATEGIES SECTION
+       ========================================================================== */
+    .strategy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .strategy-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.08);
+    }
+
+    .strategy-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .strategy-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .strategy-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       HOW IT WORKS SECTION
+       ========================================================================== */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      position: relative;
+      transition: all var(--transition-normal);
+    }
+
+    .timeline-card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-4px);
+    }
+
+    .timeline-step-num {
+      font-family: var(--font-mono);
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.12);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-card:hover .timeline-step-num {
+      color: var(--accent-green);
+    }
+
+    .timeline-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       WHY FXTRADERINFO SECTION
+       ========================================================================== */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    .why-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all var(--transition-normal);
+    }
+
+    .why-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+    }
+
+    .why-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .why-title {
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .why-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       TRADING RESOURCES SECTION
+       ========================================================================== */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .resource-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .resource-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+    }
+
+    .resource-card-top {
+      margin-bottom: 1.25rem;
+    }
+
+    .resource-icon-wrap {
+      color: var(--accent-blue);
+      font-size: 1.35rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .resource-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .resource-card-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .resource-link-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* ==========================================================================
+       MARKET DASHBOARD VISUAL (SIMULATED DATA)
+       ========================================================================== */
+    .dashboard-visual-card {
+      background: rgba(11, 17, 26, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .dash-header-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .dash-title-group h3 {
+      font-size: 1.2rem;
+    }
+
+    .dash-disclaimer-tag {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--accent-gold);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+    }
+
+    .market-ticker-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .ticker-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: all var(--transition-fast);
+    }
+
+    .ticker-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .ticker-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .ticker-symbol {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .ticker-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .ticker-badge.up {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+    }
+
+    .ticker-badge.down {
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--accent-red);
+    }
+
+    .ticker-price {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      transition: color var(--transition-fast);
+    }
+
+    .ticker-sub {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       LEAD GENERATION / CTA STRIP
+       ========================================================================== */
+    .lead-cta-section {
+      background: linear-gradient(135deg, rgba(6, 78, 59, 0.4) 0%, rgba(11, 17, 26, 0.9) 60%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: var(--radius-xl);
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg), 0 0 40px rgba(16, 185, 129, 0.1);
+    }
+
+    .lead-cta-content {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lead-cta-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .lead-cta-desc {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.25rem;
+    }
+
+    .lead-cta-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       CONTACT SECTION & FORMS
+       ========================================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3.5rem;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-info-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info-text h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-info-text p, .contact-info-text a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .contact-info-text a:hover {
+      color: var(--accent-green);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .form-label span {
+      color: var(--accent-red);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1.1rem;
+      background: rgba(6, 9, 14, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      transition: all var(--transition-fast);
+    }
+
+    .form-control:focus {
+      border-color: var(--border-focus);
+      background: rgba(6, 9, 14, 0.9);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    }
+
+    select.form-control {
+      cursor: pointer;
+    }
+
+    select.form-control option {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-error {
+      font-size: 0.78rem;
+      color: var(--accent-red);
+      margin-top: 0.35rem;
+      display: none;
+    }
+
+    .form-status {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .form-status.success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      display: block;
+    }
+
+    .form-status.error {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fb7185;
+      display: block;
+    }
+
+    /* Newsletter Box */
+    .newsletter-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-text h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .newsletter-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .newsletter-form .form-control {
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       FAQ ACCORDION
+       ========================================================================== */
+    .faq-wrapper {
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+
+    .faq-item:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .faq-header {
+      width: 100%;
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      text-align: left;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .faq-icon {
+      font-size: 0.85rem;
+      color: var(--accent-green);
+      transition: transform var(--transition-normal);
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-normal), padding var(--transition-normal);
+      padding: 0 1.5rem;
+    }
+
+    .faq-item.active .faq-body {
+      padding: 0 1.5rem 1.35rem;
+    }
+
+    .faq-body p {
+      font-size: 0.94rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       RISK DISCLAIMER
+       ========================================================================== */
+    .risk-banner {
+      background: rgba(15, 23, 36, 0.85);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-left: 4px solid var(--accent-gold);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .risk-banner-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--accent-gold);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .risk-banner p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .risk-banner strong {
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 5rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 1rem 0 1.5rem;
+      max-width: 320px;
+    }
+
+    .footer-heading {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-green);
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .social-btn:hover {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       MODAL SYSTEM
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 12, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 620px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      transform: scale(0.95) translateY(10px);
+      transition: transform var(--transition-normal);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--bg-secondary);
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.15); }
+    }
+
+    .fade-in-element {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-element.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1200px) {
+      .hero-title { font-size: 2.8rem; }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .timeline-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .resource-grid { grid-template-columns: repeat(2, 1fr); }
+      .market-ticker-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    }
+
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-content { text-align: center; }
+      .hero-desc { margin: 0 auto 2.25rem; }
+      .hero-cta-group { justify-content: center; }
+      .hero-badges { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .bot-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      
+      .nav-menu, .nav-actions .btn { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 4.5rem 0; }
+      .hero-title { font-size: 2.3rem; }
+      .section-title { font-size: 1.95rem; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .market-ticker-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .newsletter-card { flex-direction: column; text-align: center; }
+      .newsletter-form { flex-direction: column; }
+      .book-actions { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2rem; }
+      .btn-lg { width: 100%; }
+      .hero-cta-group { flex-direction: column; width: 100%; }
+      .hero-cta-group .btn { width: 100%; }
+      .modal-body { padding: 1.5rem 1.25rem; }
+      .modal-header { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER / NAVBAR
+       ========================================================================== -->
+  <header class="header" id="navbar">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="#home" class="logo" aria-label="FXTraderInfo Homepage">
+          <div class="logo-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <span class="logo-text">FXTrader<span>Info</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#books" class="nav-link">Books</a>
+          <a href="#bots" class="nav-link">Forex Bots</a>
+          <a href="#strategies" class="nav-link">Strategies</a>
+          <a href="#resources" class="nav-link">Resources</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Right CTA Actions -->
+        <div class="nav-actions">
+          <a href="#bots" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-robot"></i> Explore Bots
+          </a>
+          <a href="#contact" class="btn btn-primary btn-sm">
+            Get Started
+          </a>
+          <!-- Mobile Hamburger -->
+          <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <aside class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
+    <a href="#home" class="nav-link mobile-nav-link">Home</a>
+    <a href="#about" class="nav-link mobile-nav-link">About</a>
+    <a href="#books" class="nav-link mobile-nav-link">Books</a>
+    <a href="#bots" class="nav-link mobile-nav-link">Forex Bots</a>
+    <a href="#strategies" class="nav-link mobile-nav-link">Strategies</a>
+    <a href="#resources" class="nav-link mobile-nav-link">Resources</a>
+    <a href="#faq" class="nav-link mobile-nav-link">FAQ</a>
+    <a href="#contact" class="nav-link mobile-nav-link">Contact</a>
+    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+      <a href="#bots" class="btn btn-outline btn-block mobile-nav-link">Explore Bots</a>
+      <a href="#contact" class="btn btn-primary btn-block mobile-nav-link">Get Started</a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Content -->
+          <div class="hero-content">
+            <div class="hero-pill">
+              <span class="dot"></span>
+              <span>Forex Education & Algorithmic Trading Hub</span>
+            </div>
+            
+            <h1 class="hero-title">
+              Trade Smarter. <br>
+              Learn Better. <br>
+              <span class="gradient-green">Automate Strategically.</span>
+            </h1>
+            
+            <p class="hero-desc">
+              Explore forex trading knowledge, practical trading books, algorithmic trading tools and professionally designed forex bots built for traders who want to understand the markets and improve their trading workflow.
+            </p>
+            
+            <div class="hero-cta-group">
+              <a href="#bots" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-robot"></i> Explore Forex Bots
+              </a>
+              <a href="#books" class="btn btn-secondary btn-lg">
+                <i class="fa-solid fa-book-open"></i> Explore Books
+              </a>
+            </div>
+
+            <div class="hero-badges">
+              <div class="hero-badge-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Strict Risk Discipline</span>
+              </div>
+              <div class="hero-badge-item">
+                <i class="fa-solid fa-microchip"></i>
+                <span>Algorithmic Execution</span>
+              </div>
+              <div class="hero-badge-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Deep Market Theory</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Trading Terminal Graphic -->
+          <div class="hero-terminal-wrap">
+            <div class="terminal-card">
+              <div class="terminal-header">
+                <div class="terminal-pair-info">
+                  <span class="terminal-symbol">EUR/USD</span>
+                  <span class="terminal-tag">M5 Active</span>
+                </div>
+                <div class="terminal-price-live">
+                  <span class="terminal-price-val" id="heroLivePrice">1.08452</span>
+                  <span class="terminal-price-change" id="heroLiveChange">+0.32%</span>
+                </div>
+              </div>
+
+              <!-- Animated Chart -->
+              <div class="chart-container" id="heroChart">
+                <div class="chart-grid-lines">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <!-- Candlesticks generated by CSS/HTML -->
+                <div class="candle bull" style="height: 60%;"><div class="candle-wick"></div><div class="candle-body" style="height: 65%; bottom: 20%;"></div></div>
+                <div class="candle bull" style="height: 75%;"><div class="candle-wick"></div><div class="candle-body" style="height: 70%; bottom: 15%;"></div></div>
+                <div class="candle bear" style="height: 50%;"><div class="candle-wick"></div><div class="candle-body" style="height: 55%; top: 20%;"></div></div>
+                <div class="candle bull" style="height: 85%;"><div class="candle-wick"></div><div class="candle-body" style="height: 80%; bottom: 10%;"></div></div>
+                <div class="candle bear" style="height: 65%;"><div class="candle-wick"></div><div class="candle-body" style="height: 60%; top: 15%;"></div></div>
+                <div class="candle bull" style="height: 90%;"><div class="candle-wick"></div><div class="candle-body" style="height: 75%; bottom: 10%;"></div></div>
+                <div class="candle bull" style="height: 95%;"><div class="candle-wick"></div><div class="candle-body" style="height: 85%; bottom: 5%;"></div></div>
+                <div class="candle bear" style="height: 70%;"><div class="candle-wick"></div><div class="candle-body" style="height: 65%; top: 10%;"></div></div>
+                <div class="candle bull" style="height: 88%;"><div class="candle-wick"></div><div class="candle-body" style="height: 70%; bottom: 15%;"></div></div>
+                <div class="candle bull" style="height: 98%;"><div class="candle-wick"></div><div class="candle-body" style="height: 90%; bottom: 5%;"></div></div>
+              </div>
+
+              <!-- Meta Row -->
+              <div class="terminal-meta-grid">
+                <div class="meta-stat-box">
+                  <div class="meta-stat-label">Signal Status</div>
+                  <div class="meta-stat-value" style="color: var(--accent-green);"><i class="fa-solid fa-arrow-trend-up"></i> Bullish Break</div>
+                </div>
+                <div class="meta-stat-box">
+                  <div class="meta-stat-label">Risk/Reward</div>
+                  <div class="meta-stat-value">1 : 3.2 Target</div>
+                </div>
+                <div class="meta-stat-box">
+                  <div class="meta-stat-label">Execution</div>
+                  <div class="meta-stat-value">Rule-Based</div>
+                </div>
+              </div>
+
+              <!-- Bot Status Indicator -->
+              <div class="bot-indicator-strip">
+                <div class="bot-status-left">
+                  <span class="status-pulse"></span>
+                  <span style="font-weight: 600;">FXTrader Bot Pro EA:</span>
+                  <span class="font-mono" style="color: var(--text-muted);">MQL5 Engine Active</span>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">Online</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TRUST / VALUE STRIP
+         ========================================================================== -->
+    <section class="trust-strip" aria-label="Key Value Pillars">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="trust-text">
+              <h4>Trading Education</h4>
+              <p>Structured curriculum for all levels</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-book"></i></div>
+            <div class="trust-text">
+              <h4>Forex Books</h4>
+              <p>In-depth strategy & psychology guides</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="trust-text">
+              <h4>Algorithmic Tools</h4>
+              <p>Rule-based EA automation engines</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-sliders"></i></div>
+            <div class="trust-text">
+              <h4>Trading Strategies</h4>
+              <p>Systematic, backtested frameworks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT SECTION
+         ========================================================================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <!-- Text column -->
+          <div class="about-content fade-in-element">
+            <div class="section-badge">About FXTraderInfo</div>
+            <h2 class="section-title">Built for Traders Who Want More Than Just Signals</h2>
+            <p style="margin-bottom: 1.25rem;">
+              FXTraderInfo was founded on a simple principle: long-term consistency in forex markets requires a comprehensive mastery of market structure, risk preservation, and disciplined execution.
+            </p>
+            <p>
+              Rather than promoting speculative shortcuts or making unrealistic profit promises, we combine rigorous market literature, strategic technical frameworks, and algorithmic trading automation to help traders develop a systematic trading workflow.
+            </p>
+
+            <div class="about-feature-list">
+              <div class="about-feature-item">
+                <div class="about-feature-icon"><i class="fa-solid fa-check"></i></div>
+                <div class="about-feature-content">
+                  <h4>Education-Driven Philosophy</h4>
+                  <p>Mastering trading psychology, risk/reward dynamics, and price action theory before risking capital.</p>
+                </div>
+              </div>
+              <div class="about-feature-item">
+                <div class="about-feature-icon"><i class="fa-solid fa-check"></i></div>
+                <div class="about-feature-content">
+                  <h4>Systematic Automation</h4>
+                  <p>Transforming qualitative chart setups into quantitative, rule-based Expert Advisors for MT4 and MT5.</p>
+                </div>
+              </div>
+              <div class="about-feature-item">
+                <div class="about-feature-icon"><i class="fa-solid fa-check"></i></div>
+                <div class="about-feature-content">
+                  <h4>Uncompromising Risk Management</h4>
+                  <p>Built-in position sizing, drawdown ceilings, and session filters to protect trading capital.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ecosystem diagram card -->
+          <div class="about-graphic fade-in-element">
+            <div class="ecosystem-card">
+              <div class="ecosystem-header">
+                <span class="section-badge gold" style="margin-bottom: 0.5rem;">Methodology</span>
+                <h3>FXTraderInfo Ecosystem</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">From fundamental theory to automated execution</p>
+              </div>
+
+              <div class="ecosystem-flow">
+                <div class="eco-connector-line"></div>
+                
+                <div class="eco-node">
+                  <div class="eco-node-left">
+                    <span class="eco-node-num">01</span>
+                    <div>
+                      <div class="eco-node-title">Education & Literature</div>
+                      <div class="eco-node-desc">Forex fundamentals & market theory</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right eco-node-arrow"></i>
+                </div>
+
+                <div class="eco-node">
+                  <div class="eco-node-left">
+                    <span class="eco-node-num">02</span>
+                    <div>
+                      <div class="eco-node-title">Strategy Frameworks</div>
+                      <div class="eco-node-desc">Price action & momentum rules</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right eco-node-arrow"></i>
+                </div>
+
+                <div class="eco-node">
+                  <div class="eco-node-left">
+                    <span class="eco-node-num">03</span>
+                    <div>
+                      <div class="eco-node-title">Analytical Tools</div>
+                      <div class="eco-node-desc">Backtesting & risk modeling</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right eco-node-arrow"></i>
+                </div>
+
+                <div class="eco-node" style="border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05);">
+                  <div class="eco-node-left">
+                    <span class="eco-node-num" style="color: var(--accent-green);">04</span>
+                    <div>
+                      <div class="eco-node-title">Algorithmic Automation</div>
+                      <div class="eco-node-desc">Expert Advisors & disciplined execution</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-check" style="color: var(--accent-green);"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         BOOKS SECTION
+         ========================================================================== -->
+    <section class="section" id="books" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge gold">Publications</div>
+          <h2 class="section-title">FXTrader Books</h2>
+          <p class="section-subtitle">Practical knowledge for understanding forex markets, strategies and trading psychology.</p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Book 1 -->
+          <div class="book-card fade-in-element">
+            <div class="book-cover-mockup book-cover-1">
+              <div class="book-spine-effect"></div>
+              <div class="book-badge-tag">Fundamentals</div>
+              <div class="book-mockup-title">FX Trader Fundamentals</div>
+              <div class="book-mockup-author">FXTraderInfo Series</div>
+            </div>
+            <div class="book-info">
+              <div class="book-category">Beginner / Intermediate</div>
+              <h3 class="book-title">FX Trader Fundamentals</h3>
+              <p class="book-desc">
+                An introduction to forex markets, currency pairs, market structure, trading terminology and the fundamentals every developing trader should understand.
+              </p>
+              <div class="book-actions">
+                <button class="btn btn-secondary btn-sm" onclick="openBookDetailModal(1)">Learn More</button>
+                <button class="btn btn-gold btn-sm" onclick="openBookEnquiryModal('FX Trader Fundamentals')">Enquire Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 2 -->
+          <div class="book-card fade-in-element">
+            <div class="book-cover-mockup book-cover-2">
+              <div class="book-spine-effect"></div>
+              <div class="book-badge-tag">Strategies</div>
+              <div class="book-mockup-title">FX Trading Strategies</div>
+              <div class="book-mockup-author">FXTraderInfo Series</div>
+            </div>
+            <div class="book-info">
+              <div class="book-category">Technical Analysis</div>
+              <h3 class="book-title">FX Trading Strategies</h3>
+              <p class="book-desc">
+                Explore structured approaches to technical analysis, entries, exits, risk management and strategy development for currency pairs.
+              </p>
+              <div class="book-actions">
+                <button class="btn btn-secondary btn-sm" onclick="openBookDetailModal(2)">Learn More</button>
+                <button class="btn btn-gold btn-sm" onclick="openBookEnquiryModal('FX Trading Strategies')">Enquire Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 3 -->
+          <div class="book-card fade-in-element">
+            <div class="book-cover-mockup book-cover-3">
+              <div class="book-spine-effect"></div>
+              <div class="book-badge-tag">Psychology</div>
+              <div class="book-mockup-title">Forex Trading Psychology</div>
+              <div class="book-mockup-author">FXTraderInfo Series</div>
+            </div>
+            <div class="book-info">
+              <div class="book-category">Behavioral Finance</div>
+              <h3 class="book-title">Forex Trading Psychology</h3>
+              <p class="book-desc">
+                Learn about discipline, emotional control, decision-making and the psychological challenges traders commonly face when managing real risk.
+              </p>
+              <div class="book-actions">
+                <button class="btn btn-secondary btn-sm" onclick="openBookDetailModal(3)">Learn More</button>
+                <button class="btn btn-gold btn-sm" onclick="openBookEnquiryModal('Forex Trading Psychology')">Enquire Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 4 -->
+          <div class="book-card fade-in-element">
+            <div class="book-cover-mockup book-cover-4">
+              <div class="book-spine-effect"></div>
+              <div class="book-badge-tag">Automation</div>
+              <div class="book-mockup-title">Algorithmic Forex Trading</div>
+              <div class="book-mockup-author">FXTraderInfo Series</div>
+            </div>
+            <div class="book-info">
+              <div class="book-category">Quantitative Trading</div>
+              <h3 class="book-title">Algorithmic Forex Trading</h3>
+              <p class="book-desc">
+                An introduction to automated trading concepts, trading algorithms, Expert Advisors, backtesting and systematic strategy development.
+              </p>
+              <div class="book-actions">
+                <button class="btn btn-secondary btn-sm" onclick="openBookDetailModal(4)">Learn More</button>
+                <button class="btn btn-gold btn-sm" onclick="openBookEnquiryModal('Algorithmic Forex Trading')">Enquire Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 5 -->
+          <div class="book-card fade-in-element">
+            <div class="book-cover-mockup book-cover-5">
+              <div class="book-spine-effect"></div>
+              <div class="book-badge-tag">Capital Protection</div>
+              <div class="book-mockup-title">Risk Management for Forex Traders</div>
+              <div class="book-mockup-author">FXTraderInfo Series</div>
+            </div>
+            <div class="book-info">
+              <div class="book-category">Risk Architecture</div>
+              <h3 class="book-title">Risk Management for Forex</h3>
+              <p class="book-desc">
+                Understand position sizing, stop-loss planning, risk/reward concepts and responsible capital management to protect trading accounts.
+              </p>
+              <div class="book-actions">
+                <button class="btn btn-secondary btn-sm" onclick="openBookDetailModal(5)">Learn More</button>
+                <button class="btn btn-gold btn-sm" onclick="openBookEnquiryModal('Risk Management for Forex Traders')">Enquire Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book 6 -->
+          <div class="book-card fade-in-element">
+            <div class="book-cover-mockup book-cover-6">
+              <div class="book-spine-effect"></div>
+              <div class="book-badge-tag">Advanced Playbook</div>
+              <div class="book-mockup-title">Advanced FX Strategy Playbook</div>
+              <div class="book-mockup-author">FXTraderInfo Series</div>
+            </div>
+            <div class="book-info">
+              <div class="book-category">Institutional Models</div>
+              <h3 class="book-title">Advanced FX Playbook</h3>
+              <p class="book-desc">
+                Explore advanced concepts in market analysis, strategy frameworks, trade planning and systematic execution across multiple sessions.
+              </p>
+              <div class="book-actions">
+                <button class="btn btn-secondary btn-sm" onclick="openBookDetailModal(6)">Learn More</button>
+                <button class="btn btn-gold btn-sm" onclick="openBookEnquiryModal('Advanced FX Strategy Playbook')">Enquire Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FOREX BOTS SECTION
+         ========================================================================== -->
+    <section class="section" id="bots">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge">Automation Suite</div>
+          <h2 class="section-title">Forex Trading Bots</h2>
+          <p class="section-subtitle">Explore automated trading tools designed to help traders execute predefined strategies systematically.</p>
+        </div>
+
+        <div class="bot-grid">
+          <!-- Bot 1: Basic -->
+          <div class="bot-card fade-in-element">
+            <div class="bot-header">
+              <div class="bot-tier-icon"><i class="fa-solid fa-code-branch"></i></div>
+              <h3 class="bot-title">FXTrader Bot Basic</h3>
+              <p class="bot-desc">Foundational rule-based automation for systematic single-pair execution.</p>
+            </div>
+
+            <div class="bot-features-list">
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Automated strategy execution</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Configurable trading parameters</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Basic risk management settings</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Automated trade management</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>MT4 / MT5 compatibility support</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Standard setup guide & updates</span></div>
+            </div>
+
+            <button class="btn btn-secondary btn-block" onclick="openBotModal('FXTrader Bot Basic', 'basic')">
+              View Details
+            </button>
+          </div>
+
+          <!-- Bot 2: Pro (Popular) -->
+          <div class="bot-card popular fade-in-element">
+            <div class="bot-popular-badge">Most Popular</div>
+            <div class="bot-header">
+              <div class="bot-tier-icon"><i class="fa-solid fa-bolt"></i></div>
+              <h3 class="bot-title">FXTrader Bot Pro</h3>
+              <p class="bot-desc">Enhanced multi-parameter engine with dynamic risk controls and filtering.</p>
+            </div>
+
+            <div class="bot-features-list">
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Advanced strategy configuration</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Dynamic risk management controls</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Multiple timeframe parameters</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Automated trailing & partial exits</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Real-time performance monitoring</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Priority technical support & setup</span></div>
+            </div>
+
+            <button class="btn btn-primary btn-block" onclick="openBotModal('FXTrader Bot Pro', 'pro')">
+              View Details
+            </button>
+          </div>
+
+          <!-- Bot 3: Elite -->
+          <div class="bot-card fade-in-element">
+            <div class="bot-header">
+              <div class="bot-tier-icon"><i class="fa-solid fa-crown"></i></div>
+              <h3 class="bot-title">FXTrader Bot Elite</h3>
+              <p class="bot-desc">Multi-strategy architecture with session scheduling and telemetry.</p>
+            </div>
+
+            <div class="bot-features-list">
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Multi-strategy architecture engine</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Institutional drawdown ceilings</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Configurable trading session filters</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>High-impact news event safeguards</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Comprehensive telemetry & logging</span></div>
+              <div class="bot-feature-item"><i class="fa-solid fa-check"></i><span>Future update & expansion eligibility</span></div>
+            </div>
+
+            <button class="btn btn-gold btn-block" onclick="openBotModal('FXTrader Bot Elite', 'elite')">
+              Request Demo
+            </button>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <p class="bot-disclaimer-sub">
+            <i class="fa-solid fa-triangle-exclamation"></i> Disclaimer: Past performance does not guarantee future results. Automated trading involves significant financial risk.
+          </p>
+        </div>
+
+        <!-- Bot Comparison Table -->
+        <div class="table-wrapper fade-in-element">
+          <table class="comparison-table" aria-label="Forex Bot Feature Comparison">
+            <thead>
+              <tr>
+                <th>Feature Capability</th>
+                <th>FXTrader Bot Basic</th>
+                <th>FXTrader Bot Pro</th>
+                <th>FXTrader Bot Elite</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Automated Execution</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i> Single Pair</span></td>
+                <td><span class="check"><i class="fa-solid fa-check"></i> Multi-Pair</span></td>
+                <td><span class="check"><i class="fa-solid fa-check"></i> Multi-Asset Suite</span></td>
+              </tr>
+              <tr>
+                <td>Risk Controls & Sizing</td>
+                <td>Fixed Percentage</td>
+                <td>Dynamic Volatility</td>
+                <td>Custom Equity Curve Ceiling</td>
+              </tr>
+              <tr>
+                <td>Strategy Configuration</td>
+                <td>Basic Presets</td>
+                <td>Advanced Tuning</td>
+                <td>Full Parameter Matrix</td>
+              </tr>
+              <tr>
+                <td>Trade Management</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i> TP / SL</span></td>
+                <td><span class="check"><i class="fa-solid fa-check"></i> Break-even & Trailing</span></td>
+                <td><span class="check"><i class="fa-solid fa-check"></i> Multi-Stage Scaled Exits</span></td>
+              </tr>
+              <tr>
+                <td>Monitoring & Logs</td>
+                <td>Basic Journal</td>
+                <td>Advanced Metrics</td>
+                <td>Real-time Telemetry & Webhook</td>
+              </tr>
+              <tr>
+                <td>Technical Support</td>
+                <td>Standard Email</td>
+                <td>Priority Desk</td>
+                <td>Dedicated VIP Channel</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         STRATEGIES SECTION
+         ========================================================================== -->
+    <section class="section" id="strategies" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge blue">Methodologies</div>
+          <h2 class="section-title">Forex Strategy Frameworks</h2>
+          <p class="section-subtitle">Systematic technical models designed to analyze market structure and manage risk effectively.</p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Strategy 1 -->
+          <div class="strategy-card fade-in-element">
+            <div class="strategy-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h3 class="strategy-title">Trend Following</h3>
+            <p class="strategy-desc">
+              Identifying structural momentum across higher timeframes to align entries with prevailing institutional direction and avoid counter-trend noise.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="openStrategyModal('Trend Following')">Explore Strategy</button>
+          </div>
+
+          <!-- Strategy 2 -->
+          <div class="strategy-card fade-in-element">
+            <div class="strategy-icon"><i class="fa-solid fa-maximize"></i></div>
+            <h3 class="strategy-title">Breakout Trading</h3>
+            <p class="strategy-desc">
+              Capitalizing on consolidation expansions and volatility surges beyond established support and resistance boundaries with volume confirmation.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="openStrategyModal('Breakout Trading')">Explore Strategy</button>
+          </div>
+
+          <!-- Strategy 3 -->
+          <div class="strategy-card fade-in-element">
+            <div class="strategy-icon"><i class="fa-solid fa-chart-candlestick"></i></div>
+            <h3 class="strategy-title">Price Action</h3>
+            <p class="strategy-desc">
+              Reading raw candlestick geometry, pin bars, engulfing patterns, and wick rejections without lagging indicator clutter.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="openStrategyModal('Price Action')">Explore Strategy</button>
+          </div>
+
+          <!-- Strategy 4 -->
+          <div class="strategy-card fade-in-element">
+            <div class="strategy-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h3 class="strategy-title">Support & Resistance</h3>
+            <p class="strategy-desc">
+              Mapping liquidity pools, historical supply/demand clusters, and repeating round-number price block levels for high-probability setups.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="openStrategyModal('Support & Resistance')">Explore Strategy</button>
+          </div>
+
+          <!-- Strategy 5 -->
+          <div class="strategy-card fade-in-element">
+            <div class="strategy-icon"><i class="fa-solid fa-gauge-high"></i></div>
+            <h3 class="strategy-title">Momentum Trading</h3>
+            <p class="strategy-desc">
+              Evaluating acceleration and exhaustion dynamics across European and US sessions to capture rapid intraday price shifts.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="openStrategyModal('Momentum Trading')">Explore Strategy</button>
+          </div>
+
+          <!-- Strategy 6 -->
+          <div class="strategy-card fade-in-element">
+            <div class="strategy-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="strategy-title">Risk-Based Management</h3>
+            <p class="strategy-desc">
+              Position sizing determined strictly by predefined pip stop distance and fixed equity percentage, eliminating emotional sizing errors.
+            </p>
+            <button class="btn btn-outline btn-sm" onclick="openStrategyModal('Risk-Based Position Management')">Explore Strategy</button>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            <i class="fa-solid fa-circle-info"></i> Note: All strategy descriptions are provided strictly for educational purposes and do not constitute investment advice.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         HOW IT WORKS SECTION
+         ========================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge">Process</div>
+          <h2 class="section-title">A Disciplined 4-Step Journey</h2>
+          <p class="section-subtitle">How FXTraderInfo helps you progress from foundational concepts to systematic trading.</p>
+        </div>
+
+        <div class="timeline-grid">
+          <!-- Step 1 -->
+          <div class="timeline-card fade-in-element">
+            <div class="timeline-step-num">01</div>
+            <h3 class="timeline-title">Learn</h3>
+            <p class="timeline-desc">
+              Understand forex mechanics, liquidity providers, currency correlations, and the essential risk management principles through our comprehensive books.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-card fade-in-element">
+            <div class="timeline-step-num">02</div>
+            <h3 class="timeline-title">Analyze</h3>
+            <p class="timeline-desc">
+              Study price action models, technical frameworks, and market structure to identify repeatable high-probability trading setups.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-card fade-in-element">
+            <div class="timeline-step-num">03</div>
+            <h3 class="timeline-title">Test</h3>
+            <p class="timeline-desc">
+              Backtest historical data rigorously and test strategies in simulated demo environments to verify parameters before considering live deployment.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-card fade-in-element">
+            <div class="timeline-step-num">04</div>
+            <h3 class="timeline-title">Automate</h3>
+            <p class="timeline-desc">
+              Deploy verified trading rules into MT4/MT5 Expert Advisors to execute orders without emotional interference or fatigue.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         WHY FXTRADERINFO
+         ========================================================================== -->
+    <section class="section" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge gold">Advantages</div>
+          <h2 class="section-title">Why Choose FXTraderInfo?</h2>
+          <p class="section-subtitle">We bridge the gap between rigorous trading education and institutional-grade trading tools.</p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card fade-in-element">
+            <div class="why-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3 class="why-title">Education First</h3>
+            <p class="why-desc">We believe tools are only as effective as the trader operating them. Understand the core concepts behind every strategy.</p>
+          </div>
+
+          <div class="why-card fade-in-element">
+            <div class="why-icon"><i class="fa-solid fa-diagram-project"></i></div>
+            <h3 class="why-title">Systematic Approach</h3>
+            <p class="why-desc">Turn ambiguous chart ideas into objective, testable rules with verifiable entry and exit parameters.</p>
+          </div>
+
+          <div class="why-card fade-in-element">
+            <div class="why-icon"><i class="fa-solid fa-microchip"></i></div>
+            <h3 class="why-title">Automation Engine</h3>
+            <p class="why-desc">Eliminate emotional hesitation and fatigue by deploying custom Expert Advisors to manage routine execution.</p>
+          </div>
+
+          <div class="why-card fade-in-element">
+            <div class="why-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <h3 class="why-title">Risk Awareness</h3>
+            <p class="why-desc">Every book, strategy, and bot is built around capital preservation and realistic expectations, never reckless leverage.</p>
+          </div>
+
+          <div class="why-card fade-in-element">
+            <div class="why-icon"><i class="fa-solid fa-cubes"></i></div>
+            <h3 class="why-title">Practical Resources</h3>
+            <p class="why-desc">Books, technical frameworks, and software tools unified into a single streamlined ecosystem for modern traders.</p>
+          </div>
+
+          <div class="why-card fade-in-element">
+            <div class="why-icon"><i class="fa-solid fa-user-check"></i></div>
+            <h3 class="why-title">Trader Focused</h3>
+            <p class="why-desc">Engineered around realistic trading desks, multi-session workflows, and standard industry execution platforms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TRADING RESOURCES SECTION
+         ========================================================================== -->
+    <section class="section" id="resources">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge blue">Knowledge Base</div>
+          <h2 class="section-title">Educational Resources</h2>
+          <p class="section-subtitle">Explore core topics and reference material designed to sharpen your market understanding.</p>
+        </div>
+
+        <div class="resource-grid">
+          <!-- Resource 1 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('Forex Basics', 'An overview of the foreign exchange market, currency pairs, pip calculations, bid/ask spreads, leverage, and how central banks influence global capital flows.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-globe"></i></div>
+              <h3 class="resource-card-title">Forex Basics</h3>
+              <p class="resource-card-desc">Currency pairs, pip math, leverage, and spread dynamics.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <!-- Resource 2 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('Trading Psychology', 'Understanding the cognitive biases, fear of missing out (FOMO), revenge trading, and emotional discipline required for consistent execution.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-brain"></i></div>
+              <h3 class="resource-card-title">Trading Psychology</h3>
+              <p class="resource-card-desc">Cognitive biases, emotional control, and patience.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <!-- Resource 3 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('Risk Management', 'Formulas for calculating position size based on account equity, maximum daily loss limits, and maintaining favorable risk-to-reward ratios.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3 class="resource-card-title">Risk Management</h3>
+              <p class="resource-card-desc">Position sizing rules and drawdown boundaries.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <!-- Resource 4 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('Technical Analysis', 'Core principles of trend identification, support and resistance zones, candlestick patterns, and multi-timeframe confirmation.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-chart-simple"></i></div>
+              <h3 class="resource-card-title">Technical Analysis</h3>
+              <p class="resource-card-desc">Chart patterns, key price levels, and market momentum.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <!-- Resource 5 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('Algorithmic Trading', 'How algorithmic programs execute logic, handle slippage, monitor order books, and manage risk parameters systematically.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-code"></i></div>
+              <h3 class="resource-card-title">Algorithmic Trading</h3>
+              <p class="resource-card-desc">Logic structures, automated trade engines, and execution.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <!-- Resource 6 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('MT4 / MT5 Automation', 'Installing, configuring, and safely operating Expert Advisors (EAs) on MetaTrader desktop terminals and Windows VPS servers.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-desktop"></i></div>
+              <h3 class="resource-card-title">MT4 / MT5 Automation</h3>
+              <p class="resource-card-desc">Setting up Expert Advisors, WebRequests, and VPS hosting.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <!-- Resource 7 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('Backtesting Methodology', 'Best practices for historical backtesting, modeling quality, tick data accuracy, and avoiding curve-fitting pitfalls.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <h3 class="resource-card-title">Backtesting</h3>
+              <p class="resource-card-desc">Testing strategies across historical market regimes.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <!-- Resource 8 -->
+          <div class="resource-card fade-in-element" onclick="openResourceModal('Strategy Development', 'The full lifecycle of designing, documenting, stress-testing, and deploying a robust trading framework from scratch.')">
+            <div class="resource-card-top">
+              <div class="resource-icon-wrap"><i class="fa-solid fa-compass"></i></div>
+              <h3 class="resource-card-title">Strategy Development</h3>
+              <p class="resource-card-desc">Designing, filtering, and validating trade rules.</p>
+            </div>
+            <div class="resource-link-label">Read Overview <i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SIMULATED MARKET DASHBOARD VISUAL
+         ========================================================================== -->
+    <section class="section" style="background: var(--bg-secondary); padding-top: 2rem;">
+      <div class="container">
+        <div class="dashboard-visual-card fade-in-element">
+          <div class="dash-header-strip">
+            <div class="dash-title-group">
+              <h3>Live Market Telemetry Monitor</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Simulated overview of major pairs tracked by algorithmic strategies</p>
+            </div>
+            <span class="dash-disclaimer-tag"><i class="fa-solid fa-flask"></i> Demo / Illustrative Data</span>
+          </div>
+
+          <div class="market-ticker-grid">
+            <!-- EUR/USD -->
+            <div class="ticker-card">
+              <div class="ticker-top">
+                <span class="ticker-symbol">EUR/USD</span>
+                <span class="ticker-badge up" id="eurBadge">+0.28%</span>
+              </div>
+              <div class="ticker-price" id="eurPrice" style="color: var(--accent-green);">1.08450</div>
+              <div class="ticker-sub">
+                <span>Bot: Active</span>
+                <span>Spread: 0.8 pips</span>
+              </div>
+            </div>
+
+            <!-- GBP/USD -->
+            <div class="ticker-card">
+              <div class="ticker-top">
+                <span class="ticker-symbol">GBP/USD</span>
+                <span class="ticker-badge up" id="gbpBadge">+0.41%</span>
+              </div>
+              <div class="ticker-price" id="gbpPrice" style="color: var(--accent-green);">1.27180</div>
+              <div class="ticker-sub">
+                <span>Bot: Active</span>
+                <span>Spread: 1.1 pips</span>
+              </div>
+            </div>
+
+            <!-- USD/JPY -->
+            <div class="ticker-card">
+              <div class="ticker-top">
+                <span class="ticker-symbol">USD/JPY</span>
+                <span class="ticker-badge down" id="jpyBadge">-0.15%</span>
+              </div>
+              <div class="ticker-price" id="jpyPrice" style="color: var(--accent-red);">154.620</div>
+              <div class="ticker-sub">
+                <span>Bot: Standby</span>
+                <span>Spread: 0.9 pips</span>
+              </div>
+            </div>
+
+            <!-- XAU/USD -->
+            <div class="ticker-card">
+              <div class="ticker-top">
+                <span class="ticker-symbol">XAU/USD (Gold)</span>
+                <span class="ticker-badge up" id="goldBadge">+0.65%</span>
+              </div>
+              <div class="ticker-price" id="goldPrice" style="color: var(--accent-gold);">2385.40</div>
+              <div class="ticker-sub">
+                <span>Bot: 100-Block</span>
+                <span>Spread: 2.2 pips</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         LEAD GENERATION / CTA BANNER
+         ========================================================================== -->
+    <section class="section" style="padding-top: 1rem;">
+      <div class="container">
+        <div class="lead-cta-section fade-in-element">
+          <div class="lead-cta-content">
+            <h2 class="lead-cta-title">Ready to Explore Smarter Trading Tools?</h2>
+            <p class="lead-cta-desc">
+              Equip yourself with practical trading literature, battle-tested strategy frameworks, and automated forex execution tools.
+            </p>
+            <div class="lead-cta-buttons">
+              <a href="#books" class="btn btn-gold btn-lg">
+                <i class="fa-solid fa-book"></i> Explore Books
+              </a>
+              <a href="#bots" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-robot"></i> Explore Forex Bots
+              </a>
+              <a href="#contact" class="btn btn-secondary btn-lg">
+                <i class="fa-solid fa-envelope"></i> Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FAQ SECTION
+         ========================================================================== -->
+    <section class="section" id="faq" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge">Questions & Answers</div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Common questions regarding our publications, automated bots, and trading educational resources.</p>
+        </div>
+
+        <div class="faq-wrapper fade-in-element">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>What is forex trading?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                Forex (Foreign Exchange) is the global decentralized market where currencies are traded against one another in currency pairs (such as EUR/USD or GBP/USD). It is the world's largest financial market by daily volume, functioning around the clock across major financial hubs.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>Are FXTraderInfo books suitable for beginners?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                Yes. Our catalog includes introductory volumes such as "FX Trader Fundamentals" tailored specifically for developing traders, as well as intermediate and advanced playbooks covering quantitative modeling, psychology, and risk management.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>What are forex trading bots (Expert Advisors)?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                Forex trading bots (also known as Expert Advisors or EAs) are software programs written in MQL4 or MQL5 that connect to trading terminals like MetaTrader. They monitor price feeds and automatically execute, manage, and close trades according to strictly coded mathematical rules.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>Do the forex bots guarantee profits?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                <strong>No.</strong> No trading tool, bot, or strategy can ever guarantee profits. Market conditions change, and all trading carries inherent financial risk. Our tools are designed to enforce disciplined, rule-based execution rather than emotional speculation.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>Can I use these tools with MetaTrader 4 / MetaTrader 5?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                Yes. Our bots and scripts are engineered for standard MT4 and MT5 desktop environments and can be run on local computers or hosted on Windows VPS servers for continuous operation.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>What is backtesting?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                Backtesting is the process of testing a trading strategy or algorithmic bot on historical market price data to evaluate its drawdowns, win-loss ratio, and expectancy before deploying it in live conditions.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>How should I manage trading risk?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                We advocate strict position sizing—risking only 1% to 2% of total account capital per trade, setting mandatory stop-loss orders, and maintaining a strict maximum daily drawdown limit.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>Is FXTraderInfo providing financial or investment advice?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                <strong>No.</strong> FXTraderInfo is strictly an educational resource and software development platform. We do not provide individualized financial, investment, or legal advice, nor do we manage client funds.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 9 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>How can I enquire about a bot or request a demo?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                You can click "View Details" or "Request Demo" on any bot product card, or submit the enquiry form on our Contact section. Our team will provide setup documentation and specifications.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 10 -->
+          <div class="faq-item">
+            <button class="faq-header" aria-expanded="false">
+              <span>How can I purchase or obtain a book?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-body">
+              <p>
+                Click "Enquire Now" on the respective book card to submit an enquiry. We will provide direct information regarding formats (PDF, eBook, print) and availability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT SECTION & ENQUIRY FORMS
+         ========================================================================== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header fade-in-element">
+          <div class="section-badge">Get in Touch</div>
+          <h2 class="section-title">Contact FXTraderInfo</h2>
+          <p class="section-subtitle">Have questions about our books, strategies, or forex bots? Send us a message and our team will get back to you.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left Contact Info -->
+          <div class="contact-info-wrap fade-in-element">
+            <h3 style="font-size: 1.45rem; margin-bottom: 1rem;">Let's Discuss Your Trading Needs</h3>
+            <p>
+              Whether you are looking to acquire practical trading literature, configure an automated Expert Advisor, or enquire about custom strategy development, we are here to assist.
+            </p>
+
+            <div class="contact-info-list">
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="contact-info-text">
+                  <h4>Email Enquiries</h4>
+                  <a href="mailto:support@fxtraderinfo.com">support@fxtraderinfo.com</a>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="contact-info-text">
+                  <h4>WhatsApp & Support</h4>
+                  <p>Available for registered enquiries</p>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="contact-info-text">
+                  <h4>Domain & Platform</h4>
+                  <p>fxtraderinfo.com</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk Reminder Box -->
+            <div class="risk-banner" style="margin-top: 2rem;">
+              <div class="risk-banner-header">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Educational Platform Notice</span>
+              </div>
+              <p>
+                All communications and materials are strictly for educational and informational purposes. Please ensure your contact details are accurate to receive prompt responses.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Contact Form -->
+          <div class="glass-card fade-in-element">
+            <div id="contactFormStatus" class="form-status"></div>
+            
+            <form id="mainContactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="contactName">Full Name <span>*</span></label>
+                  <input type="text" id="contactName" class="form-control" placeholder="e.g. Alex Morgan" required>
+                  <div class="form-error" id="contactNameError">Please enter your full name.</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contactEmail">Email Address <span>*</span></label>
+                  <input type="email" id="contactEmail" class="form-control" placeholder="alex@example.com" required>
+                  <div class="form-error" id="contactEmailError">Please enter a valid email address.</div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="contactPhone">Phone / WhatsApp</label>
+                  <input type="tel" id="contactPhone" class="form-control" placeholder="+1 (555) 000-0000">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contactSubject">Subject</label>
+                  <input type="text" id="contactSubject" class="form-control" placeholder="General Enquiry">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactInterest">Interested In <span>*</span></label>
+                <select id="contactInterest" class="form-control" required>
+                  <option value="Forex Books">Forex Books & Publications</option>
+                  <option value="Forex Bots">Forex Trading Bots (EAs)</option>
+                  <option value="Trading Strategies">Trading Strategy Frameworks</option>
+                  <option value="Education">Trading Education Curriculum</option>
+                  <option value="Partnership">Partnership & Distribution</option>
+                  <option value="General Enquiry">General Enquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactMessage">Your Message <span>*</span></label>
+                <textarea id="contactMessage" class="form-control" placeholder="Tell us about your trading experience or what you'd like to enquire about..." required></textarea>
+                <div class="form-error" id="contactMessageError">Please enter a message (at least 10 characters).</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="contactSubmitBtn">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Newsletter Strip -->
+        <div class="newsletter-card fade-in-element">
+          <div class="newsletter-text">
+            <h3>Get FX Trading Resources</h3>
+            <p>Subscribe for educational strategy updates, risk management guides, and publication releases.</p>
+          </div>
+          <form class="newsletter-form" id="newsletterForm" novalidate>
+            <input type="email" id="newsletterEmail" class="form-control" placeholder="Enter your email" required aria-label="Email address for newsletter">
+            <button type="submit" class="btn btn-gold" id="newsletterBtn">
+              <i class="fa-solid fa-bell"></i> Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MANDATORY RISK DISCLAIMER SECTION
+         ========================================================================== -->
+    <section class="section-sm" style="background: #030508; border-top: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="risk-banner" style="margin-bottom: 0;">
+          <div class="risk-banner-header">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>High Risk Investment Warning & Disclosure</span>
+          </div>
+          <p>
+            Forex and leveraged trading involve substantial risk and may not be suitable for every investor. FXTraderInfo provides educational information, books and trading tools for informational and educational purposes. Nothing on this website should be interpreted as financial, investment or trading advice. Automated trading systems can result in losses, including losses exceeding expectations. Past performance is not indicative of future results.
+          </p>
+          <p style="margin-top: 0.75rem; font-weight: 700; color: #ffffff;">
+            Trade responsibly. Never risk money you cannot afford to lose.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <a href="#home" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <span class="logo-text">FXTrader<span>Info</span></span>
+          </a>
+          <p>
+            Empowering disciplined currency traders through comprehensive literature, structured strategies, and algorithmic automation tools.
+          </p>
+          <div class="social-links">
+            <a href="mailto:support@fxtraderinfo.com" class="social-btn" aria-label="Email support"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Explore links -->
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#books">Forex Books</a></li>
+            <li><a href="#bots">Forex Trading Bots</a></li>
+            <li><a href="#strategies">Trading Strategies</a></li>
+            <li><a href="#resources">Educational Resources</a></li>
+            <li><a href="#faq">FAQ Knowledge Base</a></li>
+          </ul>
+        </div>
+
+        <!-- Company links -->
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About FXTraderInfo</a></li>
+            <li><a href="#how-it-works">Our Methodology</a></li>
+            <li><a href="#contact">Contact Support</a></li>
+            <li><a onclick="openLegalModal('terms')">Terms & Conditions</a></li>
+            <li><a onclick="openLegalModal('privacy')">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal & Risk links -->
+        <div>
+          <h4 class="footer-heading">Compliance</h4>
+          <ul class="footer-links">
+            <li><a onclick="openLegalModal('risk')">Risk Disclosure</a></li>
+            <li><a onclick="openLegalModal('disclaimer')">Educational Disclaimer</a></li>
+            <li><a onclick="openLegalModal('cookies')">Cookie Policy</a></li>
+            <li><a href="#faq">Support Center</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="currentYear">2026</span> FXTraderInfo (fxtraderinfo.com). All Rights Reserved.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a onclick="openLegalModal('privacy')" style="cursor: pointer;">Privacy</a>
+          <a onclick="openLegalModal('terms')" style="cursor: pointer;">Terms</a>
+          <a onclick="openLegalModal('risk')" style="cursor: pointer;">Risk Disclosure</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL 1: BOOK ENQUIRY / DETAIL MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="bookModalTitle">Book Enquiry</h3>
+        <button class="modal-close" onclick="closeModal('bookModal')" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div id="bookModalStatus" class="form-status"></div>
+
+        <form id="bookEnquiryForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="bookEnquirySelect">Selected Book <span>*</span></label>
+            <select id="bookEnquirySelect" class="form-control" required>
+              <option value="FX Trader Fundamentals">FX Trader Fundamentals</option>
+              <option value="FX Trading Strategies">FX Trading Strategies</option>
+              <option value="Forex Trading Psychology">Forex Trading Psychology</option>
+              <option value="Algorithmic Forex Trading">Algorithmic Forex Trading</option>
+              <option value="Risk Management for Forex Traders">Risk Management for Forex Traders</option>
+              <option value="Advanced FX Strategy Playbook">Advanced FX Strategy Playbook</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="bookName">Full Name <span>*</span></label>
+              <input type="text" id="bookName" class="form-control" placeholder="Your name" required>
+              <div class="form-error" id="bookNameError">Name is required.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bookEmail">Email Address <span>*</span></label>
+              <input type="email" id="bookEmail" class="form-control" placeholder="Your email" required>
+              <div class="form-error" id="bookEmailError">Valid email is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="bookPhone">WhatsApp / Phone Number</label>
+            <input type="tel" id="bookPhone" class="form-control" placeholder="+1 (555) 000-0000">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="bookMessage">Questions / Preferred Format</label>
+            <textarea id="bookMessage" class="form-control" placeholder="Specify digital (PDF/eBook) or any questions regarding the content..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-block btn-lg">
+            <i class="fa-solid fa-paper-plane"></i> Send Book Enquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: BOT DETAIL & DEMO REQUEST MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="botModal" role="dialog" aria-modal="true" aria-labelledby="botModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="botModalTitle">Forex Bot Information & Demo</h3>
+        <button class="modal-close" onclick="closeModal('botModal')" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div id="botModalOverview" style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); font-size: 0.9rem; color: var(--text-secondary);">
+          <!-- Dynamic Overview Injected Here -->
+        </div>
+
+        <div id="botModalStatus" class="form-status"></div>
+
+        <form id="botEnquiryForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="botEnquirySelect">Selected Bot Model <span>*</span></label>
+            <select id="botEnquirySelect" class="form-control" required>
+              <option value="FXTrader Bot Basic">FXTrader Bot Basic</option>
+              <option value="FXTrader Bot Pro">FXTrader Bot Pro</option>
+              <option value="FXTrader Bot Elite">FXTrader Bot Elite</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="botUserName">Full Name <span>*</span></label>
+              <input type="text" id="botUserName" class="form-control" placeholder="Your name" required>
+              <div class="form-error" id="botUserNameError">Name is required.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="botUserEmail">Email Address <span>*</span></label>
+              <input type="email" id="botUserEmail" class="form-control" placeholder="Your email" required>
+              <div class="form-error" id="botUserEmailError">Valid email is required.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="botUserPlatform">Trading Platform</label>
+              <select id="botUserPlatform" class="form-control">
+                <option value="MetaTrader 5 (MT5)">MetaTrader 5 (MT5)</option>
+                <option value="MetaTrader 4 (MT4)">MetaTrader 4 (MT4)</option>
+                <option value="Other / Exploring">Other / Exploring</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="botExperience">Experience Level</label>
+              <select id="botExperience" class="form-control">
+                <option value="Beginner (< 1 year)">Beginner (&lt; 1 year)</option>
+                <option value="Intermediate (1-3 years)">Intermediate (1-3 years)</option>
+                <option value="Advanced (3+ years)">Advanced (3+ years)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="botUserPhone">WhatsApp / Phone Number</label>
+            <input type="tel" id="botUserPhone" class="form-control" placeholder="+1 (555) 000-0000">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="botUserMessage">Specific Requirements / Target Pairs</label>
+            <textarea id="botUserMessage" class="form-control" placeholder="Mention preferred currency pairs, VPS requirements, or questions..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            <i class="fa-solid fa-robot"></i> Request Bot Information & Specs
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: GENERIC / EDUCATIONAL / LEGAL MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="genericModal" role="dialog" aria-modal="true" aria-labelledby="genericModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="genericModalTitle">Information</h3>
+        <button class="modal-close" onclick="closeModal('genericModal')" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="genericModalBody" style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary);">
+        <!-- Injected Content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    /**
+     * ==========================================================================
+     * FXTRADERINFO - CORE APPLICATION LOGIC
+     * ==========================================================================
+     */
+
+    // --------------------------------------------------------------------------
+    // 1. BACKEND INTEGRATION PLACEHOLDER ARCHITECTURE
+    // --------------------------------------------------------------------------
+    /**
+     * FUTURE PHP BACKEND CONFIGURATION
+     * In production, replace these endpoints with your live PHP or REST API routes.
+     * e.g., 'https://fxtraderinfo.com/api/contact.php'
+     */
+    const API_ENDPOINTS = {
+      contact: "",     // e.g. "/api/contact.php"
+      bookEnquiry: "", // e.g. "/api/book-enquiry.php"
+      botEnquiry: "",  // e.g. "/api/bot-enquiry.php"
+      newsletter: ""   // e.g. "/api/newsletter.php"
+    };
+
+    /**
+     * Generic form dispatcher that logs and simulates API interaction
+     * without fabricating fake backend responses.
+     */
+    async function submitFormData(endpointType, payload) {
+      console.log(`[Form Submission Dispatch] Type: ${endpointType}`, payload);
+      
+      const endpoint = API_ENDPOINTS[endpointType];
+      if (endpoint && endpoint.trim() !== "") {
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          return await response.json();
+        } catch (err) {
+          console.error(`[API Error] Failed to submit to ${endpoint}`, err);
+          throw new Error("Unable to connect to production server.");
+        }
+      } else {
+        // Fallback simulation for frontend template preview
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({
+              success: true,
+              message: "Thank you! Your enquiry has been received. Our team will review your details and contact you shortly."
+            });
+          }, 800);
+        });
+      }
+    }
+
+    // --------------------------------------------------------------------------
+    // 2. NAVIGATION & SCROLL EVENTS
+    // --------------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      // Dynamic Year in Footer
+      const yearEl = document.getElementById("currentYear");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Sticky Navbar Effect
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+        updateActiveNavLink();
+      });
+
+      // Mobile Hamburger Navigation
+      const hamburgerBtn = document.getElementById("hamburgerBtn");
+      const mobileNav = document.getElementById("mobileNav");
+      const mobileNavBackdrop = document.getElementById("mobileNavBackdrop");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+      function toggleMobileMenu() {
+        const isOpen = hamburgerBtn.classList.contains("active");
+        hamburgerBtn.classList.toggle("active");
+        mobileNav.classList.toggle("active");
+        mobileNavBackdrop.classList.toggle("active");
+        hamburgerBtn.setAttribute("aria-expanded", !isOpen);
+        document.body.style.overflow = isOpen ? "" : "hidden";
+      }
+
+      function closeMobileMenu() {
+        hamburgerBtn.classList.remove("active");
+        mobileNav.classList.remove("active");
+        mobileNavBackdrop.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      if (hamburgerBtn) hamburgerBtn.addEventListener("click", toggleMobileMenu);
+      if (mobileNavBackdrop) mobileNavBackdrop.addEventListener("click", closeMobileMenu);
+
+      mobileLinks.forEach(link => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      // Active Navigation Link on Scroll
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-menu .nav-link");
+
+      function updateActiveNavLink() {
+        const scrollY = window.pageYOffset;
+        sections.forEach(current => {
+          const sectionHeight = current.offsetHeight;
+          const sectionTop = current.offsetTop - 120;
+          const sectionId = current.getAttribute("id");
+
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === `#${sectionId}`) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      }
+
+      // Scroll Reveal Animation via IntersectionObserver
+      const fadeElements = document.querySelectorAll(".fade-in-element");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries, observerInstance) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observerInstance.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+      } else {
+        // Fallback for older browsers
+        fadeElements.forEach(el => el.classList.add("visible"));
+      }
+
+      // Initialize Accordion FAQ
+      initFaqAccordion();
+
+      // Initialize Live Market Simulated Telemetry
+      initMarketTickerSimulation();
+
+      // Initialize Form Handlers
+      initContactForm();
+      initNewsletterForm();
+      initBookEnquiryForm();
+      initBotEnquiryForm();
+    });
+
+    // --------------------------------------------------------------------------
+    // 3. REUSABLE MODAL SYSTEM
+    // --------------------------------------------------------------------------
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    }
+
+    // Close on Overlay click
+    document.querySelectorAll(".modal-overlay").forEach(overlay => {
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          closeModal(overlay.getAttribute("id"));
+        }
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.querySelectorAll(".modal-overlay.active").forEach(modal => {
+          closeModal(modal.getAttribute("id"));
+        });
+      }
+    });
+
+    // --------------------------------------------------------------------------
+    // 4. BOOK MODALS & ENQUIRIES
+    // --------------------------------------------------------------------------
+    const bookData = {
+      1: {
+        title: "FX Trader Fundamentals",
+        desc: "A thorough introduction to currency pair classifications, pip value calculations, broker types (ECN/STP), market sessions, order types, and essential fundamental drivers.",
+        audience: "Beginner & Developing Traders",
+        topics: ["Forex Market Structure", "Major, Minor & Exotic Pairs", "Spread & Leverage Math", "Session Overlaps & Volatility"]
+      },
+      2: {
+        title: "FX Trading Strategies",
+        desc: "Detailed technical analysis methodologies combining multi-timeframe trend alignment, Fibonacci retracements, liquidity sweeps, and structured trade planning.",
+        audience: "Technical Analysis Traders",
+        topics: ["Multi-Timeframe Top-Down Analysis", "Liquidity & Order Blocks", "High-Probability Entry Triggers", "Stop Loss Placement Models"]
+      },
+      3: {
+        title: "Forex Trading Psychology",
+        desc: "Overcoming fear of loss, emotional attachment to positions, dealing with drawdown periods, and building the unwavering mental discipline of an institutional operator.",
+        audience: "All Active Forex Traders",
+        topics: ["Cognitive Biases in Trading", "The Law of Large Numbers", "Drawdown Coping Mechanisms", "Daily Trader Journaling Habits"]
+      },
+      4: {
+        title: "Algorithmic Forex Trading",
+        desc: "An architectural guide to transforming discretionary trading strategies into quantitative, rule-based algorithms with automated execution in MetaTrader.",
+        audience: "Systematic & Quant Traders",
+        topics: ["MQL4/MQL5 Algorithm Logic", "Backtesting Modeling Quality", "Curve-Fitting Avoidance", "VPS Infrastructure & Redundancy"]
+      },
+      5: {
+        title: "Risk Management for Forex Traders",
+        desc: "Mathematics of capital survival: position sizing algorithms, risk-to-reward ratios, portfolio heat calculations, and equity protection thresholds.",
+        audience: "Risk-Conscious Traders",
+        topics: ["Fixed % vs Fixed Dollar Risk", "Dynamic Lot Size Formulae", "Maximum Daily Stop Ceilings", "Drawdown Recovery Mathematics"]
+      },
+      6: {
+        title: "Advanced FX Strategy Playbook",
+        desc: "Institutional-level session trading models, macroeconomic catalyst preparation, multi-pair correlation hedging, and advanced execution mechanics.",
+        audience: "Experienced Traders",
+        topics: ["London / New York Open Setups", "Central Bank Rate Cycles", "Currency Strength Metering", "Session Liquidity Sweeps"]
+      }
+    };
+
+    function openBookDetailModal(bookId) {
+      const data = bookData[bookId];
+      if (!data) return;
+
+      const titleEl = document.getElementById("genericModalTitle");
+      const bodyEl = document.getElementById("genericModalBody");
+
+      titleEl.textContent = data.title;
+      bodyEl.innerHTML = `
+        <div style="margin-bottom: 1.25rem;">
+          <span class="section-badge gold" style="margin-bottom: 0.5rem;">Publication Overview</span>
+          <p style="margin-top: 0.5rem; font-size: 1rem; color: #ffffff;">${data.desc}</p>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-gold);">Core Curriculum Topics:</h4>
+          <ul style="list-style: disc; padding-left: 1.25rem; color: var(--text-secondary);">
+            ${data.topics.map(t => `<li style="margin-bottom: 0.35rem;">${t}</li>`).join("")}
+          </ul>
+        </div>
+        <div style="padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: flex-end; gap: 1rem;">
+          <button class="btn btn-secondary btn-sm" onclick="closeModal('genericModal')">Close</button>
+          <button class="btn btn-gold btn-sm" onclick="closeModal('genericModal'); openBookEnquiryModal('${data.title}')">Enquire for Copy</button>
+        </div>
+      `;
+
+      openModal("genericModal");
+    }
+
+    function openBookEnquiryModal(bookName) {
+      const selectEl = document.getElementById("bookEnquirySelect");
+      if (selectEl && bookName) {
+        selectEl.value = bookName;
+      }
+      openModal("bookModal");
+    }
+
+    // --------------------------------------------------------------------------
+    // 5. BOT MODALS & DEMO REQUESTS
+    // --------------------------------------------------------------------------
+    const botDataStore = {
+      basic: {
+        title: "FXTrader Bot Basic",
+        overview: "Designed for traders seeking automated, rule-based execution for single currency pairs on MT4/MT5.",
+        features: ["Standard Moving Average & Breakout Logic", "Fixed Percentage Risk Position Sizing", "Automated Take Profit & Stop Loss Enforcement", "Compatible with any regulated MT4/MT5 broker"]
+      },
+      pro: {
+        title: "FXTrader Bot Pro",
+        overview: "An enhanced multi-parameter algorithmic bot featuring volatility-adjusted entries, dynamic trailing stops, and session timing controls.",
+        features: ["Multi-Timeframe Trend Confirmation", "Dynamic Trailing Stop Loss & Partial Exit Engine", "Spread & Slippage Safety Filters", "Priority Support & VPS Optimization Guide"]
+      },
+      elite: {
+        title: "FXTrader Bot Elite",
+        overview: "Our flagship multi-strategy quantitative trading engine designed for multi-pair execution with institutional-grade capital defense rules.",
+        features: ["Multi-Strategy Layering (Trend + Mean Reversion)", "Pre-News High-Impact Event Pausing", "Maximum Daily & Total Equity Drawdown Ceilings", "Real-Time Telemetry Logging & Custom Alerts"]
+      }
+    };
+
+    function openBotModal(botName, tierKey) {
+      const selectEl = document.getElementById("botEnquirySelect");
+      const overviewEl = document.getElementById("botModalOverview");
+      const titleEl = document.getElementById("botModalTitle");
+
+      if (selectEl && botName) {
+        selectEl.value = botName;
+      }
+
+      const botInfo = botDataStore[tierKey] || botDataStore.pro;
+      titleEl.textContent = `${botInfo.title} - Specifications & Demo`;
+
+      overviewEl.innerHTML = `
+        <div style="font-weight: 700; color: var(--accent-green); margin-bottom: 0.35rem;">Model Overview:</div>
+        <p style="margin-bottom: 0.75rem;">${botInfo.overview}</p>
+        <div style="font-weight: 600; font-size: 0.82rem; color: var(--text-primary); margin-bottom: 0.25rem;">Included Capabilities:</div>
+        <ul style="list-style: check; padding-left: 1.25rem; font-size: 0.82rem; color: var(--text-secondary);">
+          ${botInfo.features.map(f => `<li style="margin-bottom: 0.2rem;">${f}</li>`).join("")}
+        </ul>
+      `;
+
+      openModal("botModal");
+    }
+
+    // --------------------------------------------------------------------------
+    // 6. STRATEGY & RESOURCE MODALS
+    // --------------------------------------------------------------------------
+    function openStrategyModal(strategyName) {
+      const titleEl = document.getElementById("genericModalTitle");
+      const bodyEl = document.getElementById("genericModalBody");
+
+      titleEl.textContent = `Strategy Framework: ${strategyName}`;
+      bodyEl.innerHTML = `
+        <div class="section-badge blue" style="margin-bottom: 0.75rem;">Technical Methodology</div>
+        <p style="margin-bottom: 1rem; color: #ffffff;">
+          <strong>${strategyName}</strong> is one of the core systematic trading frameworks detailed across our curriculum and automated bot modules.
+        </p>
+        <p style="margin-bottom: 1.25rem;">
+          In real trading scenarios, this model establishes rigorous entry confirmation triggers, defines exact invalidation (Stop Loss) boundaries, and targets structured Risk-to-Reward multiples.
+        </p>
+        <div class="risk-banner" style="margin-bottom: 1.5rem;">
+          <div class="risk-banner-header" style="font-size: 0.88rem;">Educational Notice</div>
+          <p style="font-size: 0.82rem;">Strategy execution requires historical backtesting, demo validation, and strict adherence to position sizing rules.</p>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button class="btn btn-secondary btn-sm" onclick="closeModal('genericModal')">Close</button>
+          <a href="#books" class="btn btn-primary btn-sm" onclick="closeModal('genericModal')">Study in Books</a>
+        </div>
+      `;
+
+      openModal("genericModal");
+    }
+
+    function openResourceModal(title, content) {
+      const titleEl = document.getElementById("genericModalTitle");
+      const bodyEl = document.getElementById("genericModalBody");
+
+      titleEl.textContent = title;
+      bodyEl.innerHTML = `
+        <div class="section-badge" style="margin-bottom: 0.75rem;">Knowledge Base</div>
+        <p style="font-size: 1rem; color: #ffffff; margin-bottom: 1rem;">${content}</p>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+          This resource is part of the comprehensive curriculum available through FXTraderInfo books, software setup manuals, and strategy guides.
+        </p>
+        <div style="display: flex; justify-content: flex-end;">
+          <button class="btn btn-primary btn-sm" onclick="closeModal('genericModal')">Got It</button>
+        </div>
+      `;
+
+      openModal("genericModal");
+    }
+
+    // --------------------------------------------------------------------------
+    // 7. LEGAL MODALS
+    // --------------------------------------------------------------------------
+    function openLegalModal(type) {
+      const titleEl = document.getElementById("genericModalTitle");
+      const bodyEl = document.getElementById("genericModalBody");
+
+      if (type === "privacy") {
+        titleEl.textContent = "Privacy Policy";
+        bodyEl.innerHTML = `
+          <p><strong>Effective Date:</strong> January 2026</p>
+          <p style="margin: 0.75rem 0;">FXTraderInfo (fxtraderinfo.com) respects your personal privacy. We collect information only when you submit an enquiry form or subscribe to our educational newsletter.</p>
+          <h4 style="color: #fff; margin: 1rem 0 0.4rem;">1. Information We Collect</h4>
+          <p>Name, email address, and optional phone/WhatsApp number submitted voluntarily for publication or software enquiries.</p>
+          <h4 style="color: #fff; margin: 1rem 0 0.4rem;">2. Use of Information</h4>
+          <p>Your details are used strictly to reply to your requests and provide requested educational materials. We do not sell or rent data to third parties.</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);"><em>* Note: This is a professional placeholder document. Legal documents should be reviewed by qualified legal counsel prior to commercial live operations.</em></p>
+        `;
+      } else if (type === "terms") {
+        titleEl.textContent = "Terms & Conditions";
+        bodyEl.innerHTML = `
+          <p><strong>Terms of Use</strong></p>
+          <p style="margin: 0.75rem 0;">By accessing fxtraderinfo.com, you agree to comply with our terms. All books, software indicators, bot algorithms, and website text are protected by copyright.</p>
+          <h4 style="color: #fff; margin: 1rem 0 0.4rem;">1. Educational Nature</h4>
+          <p>Materials provided are solely for educational purposes. You acknowledge that foreign exchange trading carries significant financial risk.</p>
+          <h4 style="color: #fff; margin: 1rem 0 0.4rem;">2. Software Licensing</h4>
+          <p>Expert Advisors and tools are licensed for personal educational use according to specific tier configurations.</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);"><em>* Note: This is a professional placeholder document.</em></p>
+        `;
+      } else if (type === "risk") {
+        titleEl.textContent = "Comprehensive Risk Disclosure";
+        bodyEl.innerHTML = `
+          <div class="risk-banner">
+            <div class="risk-banner-header"><i class="fa-solid fa-triangle-exclamation"></i> Mandatory Risk Warning</div>
+            <p>Trading foreign exchange on margin carries a high level of risk and may not be suitable for all investors. The high degree of leverage can work against you as well as for you.</p>
+          </div>
+          <p style="margin-bottom: 0.75rem;">Before deciding to trade foreign exchange, you should carefully consider your investment objectives, level of experience, and risk appetite.</p>
+          <p style="margin-bottom: 0.75rem;">There is a possibility that you may sustain a loss of some or all of your initial capital and therefore you should not invest money that you cannot afford to lose.</p>
+          <p><strong>Past performance of any trading methodology or automated Expert Advisor is not indicative of future results.</strong></p>
+        `;
+      } else {
+        titleEl.textContent = "Legal Notice";
+        bodyEl.innerHTML = `<p>All publications, strategy frameworks, and software tools presented on fxtraderinfo.com are provided strictly for educational and training purposes.</p>`;
+      }
+
+      openModal("genericModal");
+    }
+
+    // --------------------------------------------------------------------------
+    // 8. FAQ ACCORDION
+    // --------------------------------------------------------------------------
+    function initFaqAccordion() {
+      const faqHeaders = document.querySelectorAll(".faq-header");
+      faqHeaders.forEach(header => {
+        header.addEventListener("click", () => {
+          const item = header.parentElement;
+          const isActive = item.classList.contains("active");
+
+          // Close all other items (one open at a time)
+          document.querySelectorAll(".faq-item").forEach(otherItem => {
+            otherItem.classList.remove("active");
+            const otherBody = otherItem.querySelector(".faq-body");
+            const otherHeader = otherItem.querySelector(".faq-header");
+            if (otherBody) otherBody.style.maxHeight = null;
+            if (otherHeader) otherHeader.setAttribute("aria-expanded", "false");
+          });
+
+          // Toggle current item
+          if (!isActive) {
+            item.classList.add("active");
+            header.setAttribute("aria-expanded", "true");
+            const body = item.querySelector(".faq-body");
+            body.style.maxHeight = body.scrollHeight + "px";
+          }
+        });
+      });
+    }
+
+    // --------------------------------------------------------------------------
+    // 9. SIMULATED MARKET TICKER
+    // --------------------------------------------------------------------------
+    function initMarketTickerSimulation() {
+      const pairs = [
+        { priceId: "eurPrice", badgeId: "eurBadge", base: 1.08450, spread: 0.00015, decimals: 5 },
+        { priceId: "gbpPrice", badgeId: "gbpBadge", base: 1.27180, spread: 0.00020, decimals: 5 },
+        { priceId: "jpyPrice", badgeId: "jpyBadge", base: 154.620, spread: 0.035, decimals: 3 },
+        { priceId: "goldPrice", badgeId: "goldBadge", base: 2385.40, spread: 0.45, decimals: 2 },
+        { priceId: "heroLivePrice", badgeId: "heroLiveChange", base: 1.08452, spread: 0.00012, decimals: 5 }
+      ];
+
+      setInterval(() => {
+        pairs.forEach(pair => {
+          const priceEl = document.getElementById(pair.priceId);
+          if (!priceEl) return;
+
+          const delta = (Math.random() - 0.49) * pair.spread;
+          const newPrice = (parseFloat(priceEl.textContent) || pair.base) + delta;
+          priceEl.textContent = newPrice.toFixed(pair.decimals);
+
+          // Subtle visual color feedback
+          if (delta >= 0) {
+            priceEl.style.color = "var(--accent-green)";
+          } else {
+            priceEl.style.color = "var(--accent-red)";
+          }
+        });
+      }, 2500);
+    }
+
+    // --------------------------------------------------------------------------
+    // 10. FORM VALIDATION & SUBMISSIONS
+    // --------------------------------------------------------------------------
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // Main Contact Form
+    function initContactForm() {
+      const form = document.getElementById("mainContactForm");
+      const statusEl = document.getElementById("contactFormStatus");
+      const submitBtn = document.getElementById("contactSubmitBtn");
+
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        const nameInput = document.getElementById("contactName");
+        const emailInput = document.getElementById("contactEmail");
+        const phoneInput = document.getElementById("contactPhone");
+        const subjectInput = document.getElementById("contactSubject");
+        const interestInput = document.getElementById("contactInterest");
+        const messageInput = document.getElementById("contactMessage");
+
+        const nameError = document.getElementById("contactNameError");
+        const emailError = document.getElementById("contactEmailError");
+        const messageError = document.getElementById("contactMessageError");
+
+        // Validate Name
+        if (!nameInput.value.trim()) {
+          nameError.style.display = "block";
+          isValid = false;
+        } else {
+          nameError.style.display = "none";
+        }
+
+        // Validate Email
+        if (!isValidEmail(emailInput.value.trim())) {
+          emailError.style.display = "block";
+          isValid = false;
+        } else {
+          emailError.style.display = "none";
+        }
+
+        // Validate Message
+        if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
+          messageError.style.display = "block";
+          isValid = false;
+        } else {
+          messageError.style.display = "none";
+        }
+
+        if (!isValid) return;
+
+        // Button Loading state
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...`;
+        submitBtn.disabled = true;
+
+        const payload = {
+          fullName: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          subject: subjectInput.value.trim(),
+          interestedIn: interestInput.value,
+          message: messageInput.value.trim()
+        };
+
+        try {
+          const res = await submitFormData("contact", payload);
+          statusEl.className = "form-status success";
+          statusEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${res.message || "Thank you! Your message has been sent."}`;
+          form.reset();
+        } catch (err) {
+          statusEl.className = "form-status error";
+          statusEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Error sending enquiry. Please try again.`;
+        } finally {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Book Enquiry Form
+    function initBookEnquiryForm() {
+      const form = document.getElementById("bookEnquiryForm");
+      const statusEl = document.getElementById("bookModalStatus");
+
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        const bookSelect = document.getElementById("bookEnquirySelect");
+        const nameInput = document.getElementById("bookName");
+        const emailInput = document.getElementById("bookEmail");
+        const phoneInput = document.getElementById("bookPhone");
+        const messageInput = document.getElementById("bookMessage");
+
+        const nameError = document.getElementById("bookNameError");
+        const emailError = document.getElementById("bookEmailError");
+
+        if (!nameInput.value.trim()) {
+          nameError.style.display = "block";
+          isValid = false;
+        } else {
+          nameError.style.display = "none";
+        }
+
+        if (!isValidEmail(emailInput.value.trim())) {
+          emailError.style.display = "block";
+          isValid = false;
+        } else {
+          emailError.style.display = "none";
+        }
+
+        if (!isValid) return;
+
+        const submitBtn = form.querySelector("button[type='submit']");
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...`;
+        submitBtn.disabled = true;
+
+        const payload = {
+          bookTitle: bookSelect.value,
+          fullName: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          notes: messageInput.value.trim()
+        };
+
+        try {
+          const res = await submitFormData("bookEnquiry", payload);
+          statusEl.className = "form-status success";
+          statusEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${res.message || "Thank you! Your book enquiry has been submitted."}`;
+          form.reset();
+        } catch (err) {
+          statusEl.className = "form-status error";
+          statusEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Submission error. Please try again.`;
+        } finally {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Bot Enquiry Form
+    function initBotEnquiryForm() {
+      const form = document.getElementById("botEnquiryForm");
+      const statusEl = document.getElementById("botModalStatus");
+
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        const botSelect = document.getElementById("botEnquirySelect");
+        const nameInput = document.getElementById("botUserName");
+        const emailInput = document.getElementById("botUserEmail");
+        const platformSelect = document.getElementById("botUserPlatform");
+        const expSelect = document.getElementById("botExperience");
+        const phoneInput = document.getElementById("botUserPhone");
+        const messageInput = document.getElementById("botUserMessage");
+
+        const nameError = document.getElementById("botUserNameError");
+        const emailError = document.getElementById("botUserEmailError");
+
+        if (!nameInput.value.trim()) {
+          nameError.style.display = "block";
+          isValid = false;
+        } else {
+          nameError.style.display = "none";
+        }
+
+        if (!isValidEmail(emailInput.value.trim())) {
+          emailError.style.display = "block";
+          isValid = false;
+        } else {
+          emailError.style.display = "none";
+        }
+
+        if (!isValid) return;
+
+        const submitBtn = form.querySelector("button[type='submit']");
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Submitting...`;
+        submitBtn.disabled = true;
+
+        const payload = {
+          botModel: botSelect.value,
+          fullName: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          platform: platformSelect.value,
+          experience: expSelect.value,
+          phone: phoneInput.value.trim(),
+          requirements: messageInput.value.trim()
+        };
+
+        try {
+          const res = await submitFormData("botEnquiry", payload);
+          statusEl.className = "form-status success";
+          statusEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${res.message || "Thank you! Your bot information request has been submitted."}`;
+          form.reset();
+        } catch (err) {
+          statusEl.className = "form-status error";
+          statusEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Submission error. Please try again.`;
+        } finally {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Newsletter Form
+    function initNewsletterForm() {
+      const form = document.getElementById("newsletterForm");
+      const emailInput = document.getElementById("newsletterEmail");
+      const btn = document.getElementById("newsletterBtn");
+
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+
+        if (!isValidEmail(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i>`;
+        btn.disabled = true;
+
+        try {
+          await submitFormData("newsletter", { email });
+          alert("Thank you for subscribing to FXTraderInfo resources!");
+          form.reset();
+        } catch (err) {
+          alert("Subscription failed. Please try again.");
+        } finally {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
