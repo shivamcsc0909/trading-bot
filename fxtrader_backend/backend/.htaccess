@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Security Headers & Deny Direct Access to Sensitive Files
+<FilesMatch "\.(env|sql|sqlite|log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

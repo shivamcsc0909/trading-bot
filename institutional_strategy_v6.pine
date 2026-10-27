@@ -1,0 +1,179 @@
+//@version=6
+strategy("Institutional Multi-Factor Strategy [v6]", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10, commission_type=strategy.commission.percent, commission_value=0.02, slippage=1, max_lines_count=500, max_labels_count=500)
+
+// =============================================================================
+// 1. STRATEGY INPUTS & RISK SIZING
+// =============================================================================
+grp_gen      = "⚙️ Strategy & Backtest Parameters"
+risk_per_trade = input.float(1.0, "Risk Per Trade (%)", minval=0.1, maxval=5.0, step=0.1, group=grp_gen)
+min_score    = input.int(70, "Minimum Confluence Score (0-100)", minval=50, maxval=95, group=grp_gen)
+
+grp_mtf      = "⏱️ Multi-Timeframe Context"
+htf_tf       = input.timeframe("60", "Higher Timeframe (HTF)", group=grp_mtf)
+
+grp_trend    = "📈 Trend Baseline & Moving Averages"
+ema_fast_len = input.int(9, "Fast EMA", minval=3, group=grp_trend)
+ema_mid_len  = input.int(21, "Mid EMA", minval=8, group=grp_trend)
+ema_slow_len = input.int(50, "Slow EMA", minval=20, group=grp_trend)
+
+grp_mom      = "⚡ Momentum Engine"
+rsi_fast_len = input.int(25, "Fast RSI Length", minval=5, group=grp_mom)
+rsi_slow_len = input.int(100, "Slow RSI Length", minval=20, group=grp_mom)
+roc_len      = input.int(10, "ROC Momentum Period", minval=3, group=grp_mom)
+
+grp_vol      = "🌊 Volatility & ATR Risk"
+atr_len      = input.int(14, "ATR Length", minval=5, group=grp_vol)
+atr_sl_mult  = input.float(2.0, "ATR Stop Loss Multiplier", minval=0.5, step=0.1, group=grp_vol)
+tp1_mult     = input.float(2.0, "TP1 Multiplier (R:R)", minval=1.0, step=0.5, group=grp_vol)
+tp2_mult     = input.float(3.5, "TP2 Multiplier (R:R)", minval=1.5, step=0.5, group=grp_vol)
+tp3_mult     = input.float(5.0, "TP3 Multiplier (R:R)", minval=2.0, step=0.5, group=grp_vol)
+
+grp_ml       = "🤖 KNN Adaptive Pattern Engine"
+knn_k        = input.int(7, "KNN Neighbors (k)", minval=3, maxval=15, group=grp_ml)
+knn_memory   = input.int(80, "Rolling Pattern Memory Size", minval=30, maxval=150, group=grp_ml)
+
+// =============================================================================
+// 2. INDICATORS & FEATURE CALCULATION
+// =============================================================================
+f_get_confirmed_ema(string tf, int len) =>
+    request.security(syminfo.tickerid, tf, ta.ema(close[1], len), barmerge.gaps_off, barmerge.lookahead_off)
+
+ema_fast = ta.ema(close, ema_fast_len)
+ema_mid  = ta.ema(close, ema_mid_len)
+ema_slow = ta.ema(close, slow_ema_len)
+
+bool is_trend_bull = (ema_fast > ema_mid) and (ema_mid > ema_slow)
+bool is_trend_bear = (ema_fast < ema_mid) and (ema_mid < ema_slow)
+
+htf_ema_fast = f_get_confirmed_ema(htf_tf, ema_fast_len)
+htf_ema_slow = f_get_confirmed_ema(htf_tf, slow_ema_len)
+bool htf_bull = htf_ema_fast > htf_ema_slow
+bool htf_bear = htf_ema_fast < htf_ema_slow
+
+rsi_fast = ta.rsi(close, rsi_fast_len)
+rsi_slow = ta.rsi(close, rsi_slow_len)
+bool rsi_bull = rsi_fast > rsi_slow
+bool rsi_bear = rsi_fast < rsi_slow
+
+roc_val = ta.roc(close, roc_len)
+ema_slope = (ema_mid - ema_mid[3]) / 3.0
+
+atr_val = ta.atr(atr_len)
+atr_ma  = ta.sma(atr_val, 30)
+
+// Volume Pressure
+float candle_range = high - low
+float vol_up   = candle_range > 0 ? volume * ((close - low) / candle_range) : volume * 0.5
+float vol_down = candle_range > 0 ? volume * ((high - close) / candle_range) : volume * 0.5
+float vol_delta = vol_up - vol_down
+bool delta_bull = vol_delta > ta.sma(vol_delta, 10)
+bool delta_bear = vol_delta < ta.sma(vol_delta, 10)
+
+// Regime
+[di_p, di_m, adx_val] = ta.dmi(14, 14)
+bool is_extreme_vol = atr_val > (atr_ma * 2.5)
+
+// =============================================================================
+// 3. KNN ADAPTIVE SCORING
+// =============================================================================
+float f_rsi = math.min(math.max(nz(rsi_fast, 50.0) / 100.0, 0.0), 1.0)
+float f_atr = math.min(math.max((nz(atr_val, 1.0) / math.max(close, 1.0)) * 100.0, 0.0), 1.0)
+float f_roc = math.min(math.max((nz(roc_val, 0.0) + 5.0) / 10.0, 0.0), 1.0)
+float f_del = math.min(math.max(delta_bull ? 1.0 : 0.0, 0.0), 1.0)
+
+var mem_f1  = array.new_float(0)
+var mem_f2  = array.new_float(0)
+var mem_f3  = array.new_float(0)
+var mem_f4  = array.new_float(0)
+var mem_lbl = array.new_int(0)
+
+if bar_index > 15
+    float past_ret = (close - close[4]) / close[4]
+    int past_out = past_ret > 0.001 ? 1 : (past_ret < -0.001 ? -1 : 0)
+    
+    array.push(mem_f1, nz(f_rsi[4], 0.5))
+    array.push(mem_f2, nz(f_atr[4], 0.5))
+    array.push(mem_f3, nz(f_roc[4], 0.5))
+    array.push(mem_f4, nz(f_del[4], 0.5))
+    array.push(mem_lbl, past_out)
+    
+    if array.size(mem_f1) > knn_memory
+        array.shift(mem_f1)
+        array.shift(mem_f2)
+        array.shift(mem_f3)
+        array.shift(mem_f4)
+        array.shift(mem_lbl)
+
+int knn_votes_bull = 0
+int knn_votes_bear = 0
+int mem_sz = array.size(mem_f1)
+
+if mem_sz >= knn_k
+    var dists = array.new_float(0)
+    var lbls  = array.new_int(0)
+    array.clear(dists)
+    array.clear(lbls)
+    
+    for i = 0 to mem_sz - 1
+        float d1 = f_rsi - array.get(mem_f1, i)
+        float d2 = f_atr - array.get(mem_f2, i)
+        float d3 = f_roc - array.get(mem_f3, i)
+        float d4 = f_del - array.get(mem_f4, i)
+        array.push(dists, math.sqrt(d1*d1 + d2*d2 + d3*d3 + d4*d4))
+        array.push(lbls, array.get(mem_lbl, i))
+        
+    for k_idx = 1 to knn_k
+        float min_d = 999999.0
+        int min_idx = 0
+        int d_sz = array.size(dists)
+        for j = 0 to d_sz - 1
+            float cd = array.get(dists, j)
+            if cd < min_d
+                min_d := cd
+                min_idx := j
+        
+        int vote = array.get(lbls, min_idx)
+        if vote == 1
+            knn_votes_bull += 1
+        else if vote == -1
+            knn_votes_bear += 1
+        
+        array.set(dists, min_idx, 999999.0)
+
+bool knn_bull_pred = (knn_votes_bull > knn_votes_bear)
+bool knn_bear_pred = (knn_votes_bear > knn_votes_bull)
+
+// =============================================================================
+// 4. CONFLUENCE & ORDER EXECUTION
+// =============================================================================
+int buy_score  = (is_trend_bull ? 20 : 0) + (htf_bull ? 15 : 0) + (rsi_bull and roc_val > 0 ? 20 : 0) + (delta_bull ? 15 : 0) + (knn_bull_pred ? 15 : 0) + (close > ema_mid ? 15 : 0)
+int sell_score = (is_trend_bear ? 20 : 0) + (htf_bear ? 15 : 0) + (rsi_bear and roc_val < 0 ? 20 : 0) + (delta_bear ? 15 : 0) + (knn_bear_pred ? 15 : 0) + (close < ema_mid ? 15 : 0)
+
+bool entry_buy  = (buy_score >= min_score) and (not is_extreme_vol) and (not is_trend_bear)
+bool entry_sell = (sell_score >= min_score) and (not is_extreme_vol) and (not is_trend_bull)
+
+// Execute Orders with Dynamic Risk Sizing
+if entry_buy and (strategy.position_size == 0)
+    float sl_pts = atr_val * atr_sl_mult
+    float sl_price = close - sl_pts
+    float tp1_price = close + (sl_pts * tp1_mult)
+    float tp2_price = close + (sl_pts * tp2_mult)
+    
+    strategy.entry("Long", strategy.long)
+    strategy.exit("TP1_SL", "Long", qty_percent=50, limit=tp1_price, stop=sl_price)
+    strategy.exit("TP2_Trail", "Long", limit=tp2_price, stop=sl_price)
+
+if entry_sell and (strategy.position_size == 0)
+    float sl_pts = atr_val * atr_sl_mult
+    float sl_price = close + sl_pts
+    float tp1_price = close - (sl_pts * tp1_mult)
+    float tp2_price = close - (sl_pts * tp2_mult)
+    
+    strategy.entry("Short", strategy.short)
+    strategy.exit("TP1_SL", "Short", qty_percent=50, limit=tp1_price, stop=sl_price)
+    strategy.exit("TP2_Trail", "Short", limit=tp2_price, stop=sl_price)
+
+// Visual Moving Averages
+plot(ema_fast, "EMA Fast", color=color.blue)
+plot(ema_mid,  "EMA Mid",  color=color.yellow)
+plot(ema_slow, "EMA Slow", color=color.purple)
